@@ -1,0 +1,721 @@
+{
+  "startTime": "2025-10-12T20:07:39.019Z",
+  "phases": [
+    {
+      "name": "Phase 1: Foundation & RBAC",
+      "description": "Core missing tables, RBAC and organizational structure",
+      "files": [
+        {
+          "fileName": "005-core-missing-tables.sql",
+          "status": "success",
+          "tablesCreated": [
+            "classes",
+            "documents"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "010-rbac-and-organization.sql",
+          "status": "success",
+          "tablesCreated": [
+            "roles",
+            "permissions",
+            "role_permissions",
+            "user_roles",
+            "org_units",
+            "user_org_units",
+            "program_definitions",
+            "program_owners"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "011-add-mfa-to-users.sql",
+          "status": "error",
+          "tablesCreated": [],
+          "error": "Duplicate column name 'mfa_secret'"
+        }
+      ],
+      "tablesCreated": 10,
+      "errors": 1,
+      "startTime": "2025-10-12T20:07:39.355Z",
+      "endTime": "2025-10-12T20:07:39.590Z",
+      "duration": 235
+    },
+    {
+      "name": "Phase 2: Student & Class Management",
+      "description": "Student profiles, class management, and basic attendance",
+      "files": [
+        {
+          "fileName": "040-students-enrollment-attendance.sql",
+          "status": "success",
+          "tablesCreated": [
+            "student_profiles",
+            "guardians",
+            "student_guardians",
+            "class_enrollments",
+            "class_teachers",
+            "class_sessions",
+            "attendance_records"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "050-session-plans-and-materials.sql",
+          "status": "success",
+          "tablesCreated": [
+            "session_plans",
+            "session_activities",
+            "session_materials"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "110-student-groups-and-sessions.sql",
+          "status": "success",
+          "tablesCreated": [
+            "student_groups",
+            "group_memberships",
+            "session_group_assignments"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 13,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:39.590Z",
+      "endTime": "2025-10-12T20:07:39.930Z",
+      "duration": 340
+    },
+    {
+      "name": "Phase 3: Assessment & Assignments",
+      "description": "Assessment system and assignment management",
+      "files": [
+        {
+          "fileName": "060-assessment-assignments-gradebook.sql",
+          "status": "success",
+          "tablesCreated": [
+            "assignment_submissions",
+            "submission_files",
+            "submission_feedback",
+            "assessments",
+            "assessment_items",
+            "assessment_results",
+            "rubrics",
+            "rubric_criteria",
+            "rubric_scores",
+            "grade_items",
+            "gradebook_entries"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "180-assignment-question-bank.sql",
+          "status": "success",
+          "tablesCreated": [
+            "assignment_passages",
+            "assignment_questions",
+            "assignment_question_options",
+            "assignment_question_media"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "200-assignments-games-pivots.sql",
+          "status": "success",
+          "tablesCreated": [
+            "assignment_attachments",
+            "assignment_tags",
+            "game_attachments",
+            "game_tags",
+            "unit_assignment_links",
+            "unit_game_links"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 21,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:39.931Z",
+      "endTime": "2025-10-12T20:07:40.437Z",
+      "duration": 506
+    },
+    {
+      "name": "Phase 4: Gamification & Engagement",
+      "description": "Gamification engine and student engagement",
+      "files": [
+        {
+          "fileName": "190-games-gamification.sql",
+          "status": "success",
+          "tablesCreated": [
+            "game_sessions",
+            "game_attempts",
+            "game_scores",
+            "leaderboards",
+            "leaderboard_entries",
+            "badges",
+            "user_badges"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "600-points-economy-core.sql",
+          "status": "success",
+          "tablesCreated": [
+            "point_types",
+            "point_rules",
+            "point_balances",
+            "point_ledgers",
+            "point_limits",
+            "point_anomalies",
+            "point_review_queue"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "610-store-and-rewards.sql",
+          "status": "success",
+          "tablesCreated": [
+            "store_items",
+            "store_redemptions",
+            "reward_entitlements",
+            "reward_usage_logs"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "620-streaks-and-quests.sql",
+          "status": "success",
+          "tablesCreated": [
+            "streaks",
+            "streak_events",
+            "quests",
+            "quest_tasks",
+            "quest_assignments",
+            "quest_progress",
+            "quest_task_progress",
+            "quest_rewards"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 26,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:40.437Z",
+      "endTime": "2025-10-12T20:07:41.044Z",
+      "duration": 607
+    },
+    {
+      "name": "Phase 5: Document Library",
+      "description": "Document management with OCR and AI processing",
+      "files": [
+        {
+          "fileName": "400-document-library-core-extensions.sql",
+          "status": "success",
+          "tablesCreated": [
+            "document_tags",
+            "document_favorites",
+            "document_external_refs"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "410-document-library-ingestion-and-processing.sql",
+          "status": "success",
+          "tablesCreated": [
+            "ingestion_sources",
+            "ingestion_jobs",
+            "ingestion_items",
+            "document_processing_jobs",
+            "document_ai_tasks",
+            "document_ai_tag_suggestions"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "420-document-library-derivatives-and-pages.sql",
+          "status": "success",
+          "tablesCreated": [
+            "document_pages",
+            "document_derivatives",
+            "document_previews"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "430-document-library-sharing-permissions.sql",
+          "status": "error",
+          "tablesCreated": [],
+          "error": "Failed to open the referenced table 'document_collections'"
+        }
+      ],
+      "tablesCreated": 12,
+      "errors": 1,
+      "startTime": "2025-10-12T20:07:41.045Z",
+      "endTime": "2025-10-12T20:07:41.507Z",
+      "duration": 462
+    },
+    {
+      "name": "Phase 6: Advanced Features",
+      "description": "Advanced class management and attendance features",
+      "files": [
+        {
+          "fileName": "100-class-assignments-and-policies.sql",
+          "status": "success",
+          "tablesCreated": [
+            "class_assignments",
+            "class_assignment_overrides",
+            "class_policies"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "150-attendance-advanced.sql",
+          "status": "success",
+          "tablesCreated": [
+            "attendance_checkins",
+            "reschedule_history",
+            "conflict_logs"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "510-attendance-qr-and-adjustments.sql",
+          "status": "success",
+          "tablesCreated": [
+            "qr_tokens",
+            "attendance_adjustments"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "520-session-content-links.sql",
+          "status": "success",
+          "tablesCreated": [
+            "session_assignments",
+            "session_game_assignments"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 10,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:41.507Z",
+      "endTime": "2025-10-12T20:07:41.927Z",
+      "duration": 420
+    },
+    {
+      "name": "Phase 7: Exam System",
+      "description": "Comprehensive exam and testing system",
+      "files": [
+        {
+          "fileName": "300-exam-bank.sql",
+          "status": "success",
+          "tablesCreated": [
+            "exam_blueprints",
+            "exam_versions",
+            "exam_sections",
+            "exam_items",
+            "exam_blueprint_tags",
+            "exam_blueprint_attachments"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "310-exam-events-and-organization.sql",
+          "status": "success",
+          "tablesCreated": [
+            "exam_events",
+            "exam_registrations",
+            "exam_rooms",
+            "exam_room_allocations",
+            "proctor_assignments"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "320-exam-attempts-and-logs.sql",
+          "status": "success",
+          "tablesCreated": [
+            "exam_attempts",
+            "exam_attempt_items",
+            "exam_answer_events",
+            "exam_uploads",
+            "exam_timer_events"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "330-exam-proctoring.sql",
+          "status": "success",
+          "tablesCreated": [
+            "proctoring_sessions",
+            "proctoring_events",
+            "proctoring_snapshots"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "340-exam-grading.sql",
+          "status": "success",
+          "tablesCreated": [
+            "grading_assignments",
+            "grading_marks",
+            "grading_resolutions",
+            "plagiarism_checks",
+            "speech_metrics"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "350-exam-policies-and-requests.sql",
+          "status": "success",
+          "tablesCreated": [
+            "exam_policies",
+            "retake_requests",
+            "reschedule_requests"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 27,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:41.927Z",
+      "endTime": "2025-10-12T20:07:42.708Z",
+      "duration": 781
+    },
+    {
+      "name": "Phase 8: Business Operations",
+      "description": "Business operations, billing, and communications",
+      "files": [
+        {
+          "fileName": "020-billing-and-payments.sql",
+          "status": "success",
+          "tablesCreated": [
+            "billing_plans",
+            "subscriptions",
+            "invoices",
+            "invoice_items",
+            "payment_methods",
+            "payments",
+            "payment_transactions",
+            "refunds",
+            "gateway_events"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "030-admissions-and-crm.sql",
+          "status": "success",
+          "tablesCreated": [
+            "lead_sources",
+            "leads",
+            "enquiries",
+            "applications",
+            "contracts",
+            "contract_items",
+            "customer_interactions",
+            "support_tickets"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "070-qa-and-surveys.sql",
+          "status": "success",
+          "tablesCreated": [
+            "class_observations",
+            "observation_scores",
+            "surveys",
+            "survey_questions",
+            "survey_responses",
+            "survey_answers"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "080-communications-and-qa-threads.sql",
+          "status": "success",
+          "tablesCreated": [
+            "posts",
+            "post_attachments",
+            "post_reactions",
+            "qa_threads",
+            "qa_messages"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "120-certificates.sql",
+          "status": "success",
+          "tablesCreated": [
+            "certificate_templates",
+            "certificate_issuances",
+            "certificate_verifications"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "130-notifications.sql",
+          "status": "success",
+          "tablesCreated": [
+            "notification_templates",
+            "user_notifications",
+            "scheduled_notifications"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "140-calendar-and-meetings.sql",
+          "status": "success",
+          "tablesCreated": [
+            "external_calendars",
+            "calendar_events_sync",
+            "meeting_integrations",
+            "meeting_attendance_logs"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 38,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:42.708Z",
+      "endTime": "2025-10-12T20:07:43.493Z",
+      "duration": 785
+    },
+    {
+      "name": "Phase 9: Analytics & Reporting",
+      "description": "Analytics, reporting, and data import/export",
+      "files": [
+        {
+          "fileName": "090-reporting-and-tracking.sql",
+          "status": "success",
+          "tablesCreated": [
+            "learning_progress",
+            "completion_tracking",
+            "attendance_summary",
+            "grade_summary"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "160-import-export.sql",
+          "status": "success",
+          "tablesCreated": [
+            "import_jobs",
+            "import_results"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "170-engagement-and-risk.sql",
+          "status": "success",
+          "tablesCreated": [
+            "activity_participation",
+            "dropout_risk_flags"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "560-calendar-attendance-analytics.sql",
+          "status": "success",
+          "tablesCreated": [
+            "punctuality_metrics",
+            "staff_timesheets"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 10,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:43.494Z",
+      "endTime": "2025-10-12T20:07:43.892Z",
+      "duration": 398
+    },
+    {
+      "name": "Phase 10: Staff & Operations",
+      "description": "Staff management and operational features",
+      "files": [
+        {
+          "fileName": "530-teacher-attendance-and-timesheets.sql",
+          "status": "success",
+          "tablesCreated": [
+            "teacher_attendance",
+            "teacher_timesheets",
+            "substitution_requests"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "540-staff-shifts-and-attendance.sql",
+          "status": "success",
+          "tablesCreated": [
+            "staff_shifts",
+            "staff_shift_assignments",
+            "staff_attendance",
+            "time_off_requests",
+            "overtime_requests",
+            "geo_zones",
+            "staff_devices"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "550-reminder-policies-and-jobs.sql",
+          "status": "success",
+          "tablesCreated": [
+            "reminder_policies",
+            "reminder_jobs"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 12,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:43.893Z",
+      "endTime": "2025-10-12T20:07:44.142Z",
+      "duration": 249
+    },
+    {
+      "name": "Phase 11: Activity Bank & Collections",
+      "description": "Activity templates and content collections",
+      "files": [
+        {
+          "fileName": "700-activity-bank.sql",
+          "status": "success",
+          "tablesCreated": [
+            "activity_templates",
+            "activity_template_steps",
+            "activity_template_roles",
+            "activity_template_assets",
+            "activity_template_tags"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "710-activity-curriculum-links.sql",
+          "status": "success",
+          "tablesCreated": [
+            "unit_activity_links"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "720-activity-instances-and-responses.sql",
+          "status": "success",
+          "tablesCreated": [
+            "session_activity_instances",
+            "session_activity_groups",
+            "activity_responses",
+            "activity_response_files"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "220-collections-and-sharing.sql",
+          "status": "success",
+          "tablesCreated": [
+            "assignment_collections",
+            "assignment_collection_items",
+            "game_collections",
+            "game_collection_items",
+            "assignment_permissions",
+            "game_permissions"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 16,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:44.142Z",
+      "endTime": "2025-10-12T20:07:44.481Z",
+      "duration": 339
+    },
+    {
+      "name": "Phase 12: External Integrations",
+      "description": "External integrations and student portfolios",
+      "files": [
+        {
+          "fileName": "230-external-providers-and-standards.sql",
+          "status": "success",
+          "tablesCreated": [
+            "game_providers",
+            "provider_accounts",
+            "external_game_mappings",
+            "scorm_packages",
+            "xapi_statements"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "240-student-portfolio.sql",
+          "status": "success",
+          "tablesCreated": [
+            "student_portfolio_items"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "500-calendar-recurrence-and-events.sql",
+          "status": "success",
+          "tablesCreated": [
+            "recurrence_rules",
+            "session_recurrences",
+            "calendar_events",
+            "calendar_event_participants"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 10,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:44.481Z",
+      "endTime": "2025-10-12T20:07:44.726Z",
+      "duration": 245
+    },
+    {
+      "name": "Phase 13: Advanced Gamification",
+      "description": "Advanced gamification and grading policies",
+      "files": [
+        {
+          "fileName": "210-class-game-assignments.sql",
+          "status": "success",
+          "tablesCreated": [
+            "class_game_assignments",
+            "class_game_assignment_groups",
+            "class_game_assignment_overrides"
+          ],
+          "error": null
+        },
+        {
+          "fileName": "630-grading-policies-and-gamification.sql",
+          "status": "success",
+          "tablesCreated": [
+            "level_grading_policies",
+            "grading_components",
+            "level_skill_minima",
+            "class_gamification_policies",
+            "grade_adjustments"
+          ],
+          "error": null
+        }
+      ],
+      "tablesCreated": 8,
+      "errors": 0,
+      "startTime": "2025-10-12T20:07:44.726Z",
+      "endTime": "2025-10-12T20:07:44.938Z",
+      "duration": 212
+    }
+  ],
+  "totalTables": 0,
+  "errors": [],
+  "summary": "COMPLETED_WITH_ERRORS (2)",
+  "endTime": "2025-10-12T20:07:45.111Z",
+  "duration": 6092,
+  "initialTableCount": 94,
+  "finalTableCount": 237,
+  "tablesAdded": 143,
+  "validation": {
+    "foreignKeys": 526,
+    "indexedTables": 237
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "files": [
+    {
+      "filename": "060-assessment-assignments-gradebook.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_submissions_ibfk_4' are incompatible."
+    },
+    {
+      "filename": "070-qa-and-surveys.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'rubrics'"
+    },
+    {
+      "filename": "100-class-assignments-and-policies.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'class_assignments_ibfk_2' are incompatible."
+    },
+    {
+      "filename": "130-notifications.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'user_notifications_ibfk_5' are incompatible."
+    },
+    {
+      "filename": "160-import-export.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'row_number INT UNSIGNED NULL,\n  status ENUM('success','warning','error') NOT NUL' at line 4"
+    },
+    {
+      "filename": "180-assignment-question-bank.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_questions_ibfk_1' are incompatible."
+    },
+    {
+      "filename": "190-games-gamification.sql",
+      "status": "failure",
+      "error": "Referencing column 'game_id' and referenced column 'id' in foreign key constraint 'game_sessions_ibfk_2' are incompatible."
+    },
+    {
+      "filename": "200-assignments-games-pivots.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_attachments_ibfk_1' are incompatible."
+    },
+    {
+      "filename": "210-class-game-assignments.sql",
+      "status": "failure",
+      "error": "Referencing column 'game_id' and referenced column 'id' in foreign key constraint 'class_game_assignments_ibfk_2' are incompatible."
+    },
+    {
+      "filename": "220-collections-and-sharing.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_collection_items_ibfk_2' are incompatible."
+    },
+    {
+      "filename": "230-external-providers-and-standards.sql",
+      "status": "failure",
+      "error": "Referencing column 'game_id' and referenced column 'id' in foreign key constraint 'external_game_mappings_ibfk_1' are incompatible."
+    },
+    {
+      "filename": "300-exam-bank.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'assignment_questions'"
+    },
+    {
+      "filename": "320-exam-attempts-and-logs.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'exam_items'"
+    },
+    {
+      "filename": "340-exam-grading.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'exam_attempt_items'"
+    },
+    {
+      "filename": "520-session-content-links.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'session_assignments_ibfk_2' are incompatible."
+    },
+    {
+      "filename": "540-staff-shifts-and-attendance.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'valid_from,'1000-01-01'), IFNULL(valid_to,'9999-12-31')),\n  FOREIGN KEY (staff_s' at line 7"
+    },
+    {
+      "filename": "600-points-economy-core.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'class_id, 0)),\n  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON' at line 9"
+    },
+    {
+      "filename": "620-streaks-and-quests.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'class_id,0)),\n  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON ' at line 13"
+    }
+  ],
+  "summary": "Errors in 18 files"
+}

@@ -1,0 +1,727 @@
+[dotenv@17.2.2] injecting env (21) from ..\.env -- tip: G‹÷n+≈  load multiple .env files with { path: ['.env.local', '.env'] }
+{
+  "files": [
+    {
+      "filename": "010-rbac-and-organization.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (15 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "020-billing-and-payments.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (11 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "030-admissions-and-crm.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (22 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "040-students-enrollment-attendance.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (13 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "050-session-plans-and-materials.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (6 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "060-assessment-assignments-gradebook.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (24 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "070-qa-and-surveys.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (13 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "080-communications-and-qa-threads.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (13 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "090-reporting-and-tracking.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (9 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "100-class-assignments-and-policies.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (8 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "110-student-groups-and-sessions.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (7 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "120-certificates.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (11 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "130-notifications.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (11 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "140-calendar-and-meetings.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (6 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "150-attendance-advanced.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (6 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "160-import-export.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (3 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "170-engagement-and-risk.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (4 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "180-assignment-question-bank.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (8 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "190-games-gamification.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (17 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "200-assignments-games-pivots.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (12 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "210-class-game-assignments.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (8 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "220-collections-and-sharing.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (10 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "230-external-providers-and-standards.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (9 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "240-student-portfolio.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (2 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "300-exam-bank.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (14 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "310-exam-events-and-organization.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (14 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "320-exam-attempts-and-logs.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (13 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "330-exam-proctoring.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (6 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "340-exam-grading.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (9 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "350-exam-policies-and-requests.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (8 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "400-document-library-core-extensions.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (5 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "410-document-library-ingestion-and-processing.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (11 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "420-document-library-derivatives-and-pages.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (3 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "430-document-library-sharing-permissions.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (6 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "500-calendar-recurrence-and-events.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (9 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "510-attendance-qr-and-adjustments.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (6 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "520-session-content-links.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (4 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "530-teacher-attendance-and-timesheets.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (8 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "540-staff-shifts-and-attendance.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (13 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "550-reminder-policies-and-jobs.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (5 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "560-calendar-attendance-analytics.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (4 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "600-points-economy-core.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (20 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "610-store-and-rewards.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (11 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "620-streaks-and-quests.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (17 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "630-grading-policies-and-gamification.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (9 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "700-activity-bank.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (10 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "710-activity-curriculum-links.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (2 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    },
+    {
+      "filename": "720-activity-instances-and-responses.sql",
+      "status": "success",
+      "error": null,
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK (8 constraints)"
+        },
+        {
+          "type": "INDEX",
+          "result": "OK"
+        }
+      ]
+    }
+  ],
+  "summary": "OK"
+}
+

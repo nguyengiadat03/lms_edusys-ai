@@ -1,0 +1,1 @@
+SELECT * FROM edusys_ai_2025_v1.document_collections;

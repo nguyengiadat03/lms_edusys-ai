@@ -1,0 +1,1162 @@
+{
+  "timestamp": "2025-10-12T20:06:15.050Z",
+  "duration": 9760,
+  "success": false,
+  "phases": [
+    {
+      "name": "Database Backup",
+      "startTime": "2025-10-12T20:06:05.292Z",
+      "success": true,
+      "critical": true,
+      "results": {
+        "success": true,
+        "backupPath": "D:\\rocket global\\trung tam tieng anh\\edusys-ai\\backend\\backups\\database-backup-2025-10-12T20-06-05-292Z.txt",
+        "manual": true
+      },
+      "endTime": "2025-10-12T20:06:05.312Z",
+      "duration": 20
+    },
+    {
+      "name": "Pre-Expansion Validation",
+      "startTime": "2025-10-12T20:06:05.312Z",
+      "success": false,
+      "critical": false,
+      "results": {
+        "timestamp": "2025-10-12T20:06:05.633Z",
+        "database": "edusys_ai_2025_v1",
+        "validations": {
+          "tableStructure": {
+            "totalTables": 31,
+            "expectedTables": 214,
+            "missingTables": [
+              "activity_participation",
+              "activity_response_files",
+              "activity_responses",
+              "activity_template_assets",
+              "activity_template_roles",
+              "activity_template_steps",
+              "activity_template_tags",
+              "activity_templates",
+              "applications",
+              "assessment_items",
+              "assessment_results",
+              "assessments",
+              "assignment_attachments",
+              "assignment_collection_items",
+              "assignment_collections",
+              "assignment_passages",
+              "assignment_permissions",
+              "assignment_question_media",
+              "assignment_question_options",
+              "assignment_questions",
+              "assignment_submissions",
+              "assignment_tags",
+              "attendance_adjustments",
+              "attendance_checkins",
+              "attendance_records",
+              "attendance_summary",
+              "badges",
+              "billing_plans",
+              "calendar_event_participants",
+              "calendar_events",
+              "calendar_events_sync",
+              "certificate_issuances",
+              "certificate_templates",
+              "certificate_verifications",
+              "class_assignment_overrides",
+              "class_assignments",
+              "class_enrollments",
+              "class_game_assignment_groups",
+              "class_game_assignment_overrides",
+              "class_game_assignments",
+              "class_gamification_policies",
+              "class_observations",
+              "class_policies",
+              "class_sessions",
+              "class_teachers",
+              "completion_tracking",
+              "conflict_logs",
+              "contract_items",
+              "contracts",
+              "customer_interactions",
+              "document_ai_tag_suggestions",
+              "document_ai_tasks",
+              "document_collection_favorites",
+              "document_collection_permissions",
+              "document_derivatives",
+              "document_external_refs",
+              "document_favorites",
+              "document_pages",
+              "document_previews",
+              "document_processing_jobs",
+              "document_shares",
+              "document_tags",
+              "dropout_risk_flags",
+              "enquiries",
+              "exam_answer_events",
+              "exam_attempt_items",
+              "exam_attempts",
+              "exam_blueprint_attachments",
+              "exam_blueprint_tags",
+              "exam_blueprints",
+              "exam_events",
+              "exam_items",
+              "exam_policies",
+              "exam_registrations",
+              "exam_room_allocations",
+              "exam_rooms",
+              "exam_sections",
+              "exam_timer_events",
+              "exam_uploads",
+              "exam_versions",
+              "external_calendars",
+              "external_game_mappings",
+              "game_attachments",
+              "game_attempts",
+              "game_collection_items",
+              "game_collections",
+              "game_permissions",
+              "game_providers",
+              "game_scores",
+              "game_sessions",
+              "game_tags",
+              "gateway_events",
+              "geo_zones",
+              "grade_adjustments",
+              "grade_items",
+              "grade_summary",
+              "gradebook_entries",
+              "grading_assignments",
+              "grading_components",
+              "grading_marks",
+              "grading_resolutions",
+              "group_memberships",
+              "guardians",
+              "import_jobs",
+              "import_results",
+              "ingestion_items",
+              "ingestion_jobs",
+              "ingestion_sources",
+              "invoice_items",
+              "invoices",
+              "lead_sources",
+              "leaderboard_entries",
+              "leaderboards",
+              "leads",
+              "learning_progress",
+              "level_grading_policies",
+              "level_skill_minima",
+              "meeting_attendance_logs",
+              "meeting_integrations",
+              "notification_templates",
+              "observation_scores",
+              "overtime_requests",
+              "payment_methods",
+              "payment_transactions",
+              "payments",
+              "plagiarism_checks",
+              "point_anomalies",
+              "point_balances",
+              "point_ledgers",
+              "point_limits",
+              "point_review_queue",
+              "point_rules",
+              "point_types",
+              "post_attachments",
+              "post_reactions",
+              "posts",
+              "proctor_assignments",
+              "proctoring_events",
+              "proctoring_sessions",
+              "proctoring_snapshots",
+              "provider_accounts",
+              "punctuality_metrics",
+              "qa_messages",
+              "qa_threads",
+              "qr_tokens",
+              "quest_assignments",
+              "quest_progress",
+              "quest_rewards",
+              "quest_task_progress",
+              "quest_tasks",
+              "quests",
+              "recurrence_rules",
+              "refunds",
+              "reminder_jobs",
+              "reminder_policies",
+              "reschedule_history",
+              "reschedule_requests",
+              "retake_requests",
+              "reward_entitlements",
+              "reward_usage_logs",
+              "rubric_criteria",
+              "rubric_scores",
+              "rubrics",
+              "scheduled_notifications",
+              "scorm_packages",
+              "session_activities",
+              "session_activity_groups",
+              "session_activity_instances",
+              "session_assignments",
+              "session_game_assignments",
+              "session_group_assignments",
+              "session_materials",
+              "session_plans",
+              "session_recurrences",
+              "speech_metrics",
+              "staff_attendance",
+              "staff_devices",
+              "staff_shift_assignments",
+              "staff_shifts",
+              "staff_timesheets",
+              "store_items",
+              "store_redemptions",
+              "streak_events",
+              "streaks",
+              "student_groups",
+              "student_guardians",
+              "student_portfolio_items",
+              "student_profiles",
+              "submission_feedback",
+              "submission_files",
+              "subscriptions",
+              "substitution_requests",
+              "support_tickets",
+              "survey_answers",
+              "survey_questions",
+              "survey_responses",
+              "surveys",
+              "teacher_attendance",
+              "teacher_timesheets",
+              "time_off_requests",
+              "unit_activity_links",
+              "unit_assignment_links",
+              "unit_game_links",
+              "user_badges",
+              "user_notifications",
+              "xapi_statements"
+            ],
+            "extraTables": [],
+            "tables": [
+              {
+                "name": "approvals",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 131072
+              },
+              {
+                "name": "assignment_practice_sessions",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 81920
+              },
+              {
+                "name": "assignments",
+                "rows": 3,
+                "dataSize": 16384,
+                "indexSize": 131072
+              },
+              {
+                "name": "audit_logs",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 81920
+              },
+              {
+                "name": "campuses",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 32768
+              },
+              {
+                "name": "comments",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 98304
+              },
+              {
+                "name": "course_blueprints",
+                "rows": 1,
+                "dataSize": 16384,
+                "indexSize": 49152
+              },
+              {
+                "name": "curriculum_framework_tags",
+                "rows": 3,
+                "dataSize": 16384,
+                "indexSize": 16384
+              },
+              {
+                "name": "curriculum_framework_versions",
+                "rows": 1,
+                "dataSize": 16384,
+                "indexSize": 98304
+              },
+              {
+                "name": "curriculum_frameworks",
+                "rows": 1,
+                "dataSize": 16384,
+                "indexSize": 147456
+              },
+              {
+                "name": "games",
+                "rows": 4,
+                "dataSize": 16384,
+                "indexSize": 180224
+              },
+              {
+                "name": "kct_deployments",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 32768
+              },
+              {
+                "name": "kct_mappings",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 131072
+              },
+              {
+                "name": "kct_usage_tracking",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 98304
+              },
+              {
+                "name": "learning_outcomes_tracking",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 98304
+              },
+              {
+                "name": "org_units",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 65536
+              },
+              {
+                "name": "permissions",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 16384
+              },
+              {
+                "name": "program_definitions",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 32768
+              },
+              {
+                "name": "program_owners",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 16384
+              },
+              {
+                "name": "role_permissions",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 32768
+              },
+              {
+                "name": "roles",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 32768
+              },
+              {
+                "name": "saved_views",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 65536
+              },
+              {
+                "name": "settings",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 0
+              },
+              {
+                "name": "tags",
+                "rows": 3,
+                "dataSize": 16384,
+                "indexSize": 65536
+              },
+              {
+                "name": "tenants",
+                "rows": 1,
+                "dataSize": 16384,
+                "indexSize": 49152
+              },
+              {
+                "name": "unit_blueprint_tags",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 16384
+              },
+              {
+                "name": "unit_blueprints",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 65536
+              },
+              {
+                "name": "unit_resources",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 98304
+              },
+              {
+                "name": "user_org_units",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 16384
+              },
+              {
+                "name": "user_roles",
+                "rows": 0,
+                "dataSize": 16384,
+                "indexSize": 65536
+              },
+              {
+                "name": "users",
+                "rows": 1,
+                "dataSize": 16384,
+                "indexSize": 81920
+              }
+            ]
+          },
+          "foreignKeys": {
+            "totalConstraints": 74,
+            "brokenConstraints": [],
+            "isValid": true
+          },
+          "indexes": {
+            "totalIndexes": 206,
+            "indexedTables": 31,
+            "tablesWithoutIndexes": [
+              "settings"
+            ],
+            "indexStats": {
+              "approvals": {
+                "total": 10,
+                "unique": 1,
+                "primary": 1
+              },
+              "assignment_practice_sessions": {
+                "total": 7,
+                "unique": 1,
+                "primary": 1
+              },
+              "assignments": {
+                "total": 14,
+                "unique": 1,
+                "primary": 1
+              },
+              "audit_logs": {
+                "total": 8,
+                "unique": 1,
+                "primary": 1
+              },
+              "campuses": {
+                "total": 5,
+                "unique": 3,
+                "primary": 1
+              },
+              "comments": {
+                "total": 8,
+                "unique": 1,
+                "primary": 1
+              },
+              "course_blueprints": {
+                "total": 5,
+                "unique": 1,
+                "primary": 1
+              },
+              "curriculum_framework_tags": {
+                "total": 3,
+                "unique": 2,
+                "primary": 2
+              },
+              "curriculum_framework_versions": {
+                "total": 10,
+                "unique": 3,
+                "primary": 1
+              },
+              "curriculum_frameworks": {
+                "total": 11,
+                "unique": 2,
+                "primary": 1
+              },
+              "games": {
+                "total": 18,
+                "unique": 1,
+                "primary": 1
+              },
+              "kct_deployments": {
+                "total": 3,
+                "unique": 1,
+                "primary": 1
+              },
+              "kct_mappings": {
+                "total": 12,
+                "unique": 1,
+                "primary": 1
+              },
+              "kct_usage_tracking": {
+                "total": 10,
+                "unique": 1,
+                "primary": 1
+              },
+              "learning_outcomes_tracking": {
+                "total": 8,
+                "unique": 1,
+                "primary": 1
+              },
+              "org_units": {
+                "total": 6,
+                "unique": 3,
+                "primary": 1
+              },
+              "permissions": {
+                "total": 2,
+                "unique": 2,
+                "primary": 1
+              },
+              "program_definitions": {
+                "total": 4,
+                "unique": 3,
+                "primary": 1
+              },
+              "program_owners": {
+                "total": 3,
+                "unique": 2,
+                "primary": 2
+              },
+              "role_permissions": {
+                "total": 4,
+                "unique": 2,
+                "primary": 2
+              },
+              "roles": {
+                "total": 4,
+                "unique": 3,
+                "primary": 1
+              },
+              "saved_views": {
+                "total": 6,
+                "unique": 1,
+                "primary": 1
+              },
+              "settings": {
+                "total": 1,
+                "unique": 1,
+                "primary": 1
+              },
+              "tags": {
+                "total": 6,
+                "unique": 3,
+                "primary": 1
+              },
+              "tenants": {
+                "total": 4,
+                "unique": 2,
+                "primary": 1
+              },
+              "unit_blueprint_tags": {
+                "total": 3,
+                "unique": 2,
+                "primary": 2
+              },
+              "unit_blueprints": {
+                "total": 6,
+                "unique": 1,
+                "primary": 1
+              },
+              "unit_resources": {
+                "total": 8,
+                "unique": 1,
+                "primary": 1
+              },
+              "user_org_units": {
+                "total": 3,
+                "unique": 2,
+                "primary": 2
+              },
+              "user_roles": {
+                "total": 7,
+                "unique": 4,
+                "primary": 1
+              },
+              "users": {
+                "total": 7,
+                "unique": 2,
+                "primary": 1
+              }
+            }
+          },
+          "dataConsistency": {
+            "checks": [
+              {
+                "name": "Tenant Consistency",
+                "status": "success",
+                "details": "1 tenants, 1 user tenants, 1 framework tenants"
+              },
+              {
+                "name": "User-Role Consistency",
+                "status": "success",
+                "details": "All user-role assignments valid"
+              },
+              {
+                "name": "Assignment-Session Consistency",
+                "status": "success",
+                "details": "All practice sessions valid"
+              }
+            ],
+            "successCount": 3,
+            "warningCount": 0,
+            "errorCount": 0,
+            "isValid": true
+          }
+        },
+        "overallStatus": "ISSUES_FOUND"
+      },
+      "endTime": "2025-10-12T20:06:10.687Z",
+      "duration": 5375
+    },
+    {
+      "name": "Database Expansion",
+      "startTime": "2025-10-12T20:06:10.687Z",
+      "success": false,
+      "critical": true,
+      "results": {
+        "startTime": "2025-10-12T20:06:10.688Z",
+        "phases": [
+          {
+            "name": "Phase 1: Foundation & RBAC",
+            "description": "Core RBAC and organizational structure",
+            "files": [
+              {
+                "fileName": "010-rbac-and-organization.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "roles",
+                  "permissions",
+                  "role_permissions",
+                  "user_roles",
+                  "org_units",
+                  "user_org_units",
+                  "program_definitions",
+                  "program_owners"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "011-add-mfa-to-users.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Duplicate column name 'mfa_secret'"
+              }
+            ],
+            "tablesCreated": 8,
+            "errors": 1,
+            "startTime": "2025-10-12T20:06:11.007Z",
+            "endTime": "2025-10-12T20:06:11.258Z",
+            "duration": 251
+          },
+          {
+            "name": "Phase 2: Student & Class Management",
+            "description": "Student profiles, class management, and basic attendance",
+            "files": [
+              {
+                "fileName": "040-students-enrollment-attendance.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "050-session-plans-and-materials.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              },
+              {
+                "fileName": "110-student-groups-and-sessions.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              }
+            ],
+            "tablesCreated": 0,
+            "errors": 3,
+            "startTime": "2025-10-12T20:06:11.258Z",
+            "endTime": "2025-10-12T20:06:11.472Z",
+            "duration": 214
+          },
+          {
+            "name": "Phase 3: Assessment & Assignments",
+            "description": "Assessment system and assignment management",
+            "files": [
+              {
+                "fileName": "060-assessment-assignments-gradebook.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "180-assignment-question-bank.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              },
+              {
+                "fileName": "200-assignments-games-pivots.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              }
+            ],
+            "tablesCreated": 0,
+            "errors": 3,
+            "startTime": "2025-10-12T20:06:11.472Z",
+            "endTime": "2025-10-12T20:06:11.635Z",
+            "duration": 163
+          },
+          {
+            "name": "Phase 4: Gamification & Engagement",
+            "description": "Gamification engine and student engagement",
+            "files": [
+              {
+                "fileName": "190-games-gamification.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "600-points-economy-core.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "610-store-and-rewards.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "store_items",
+                  "store_redemptions",
+                  "reward_entitlements",
+                  "reward_usage_logs"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "620-streaks-and-quests.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              }
+            ],
+            "tablesCreated": 4,
+            "errors": 3,
+            "startTime": "2025-10-12T20:06:11.636Z",
+            "endTime": "2025-10-12T20:06:11.967Z",
+            "duration": 331
+          },
+          {
+            "name": "Phase 5: Document Library",
+            "description": "Document management with OCR and AI processing",
+            "files": [
+              {
+                "fileName": "400-document-library-core-extensions.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              },
+              {
+                "fileName": "410-document-library-ingestion-and-processing.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              },
+              {
+                "fileName": "420-document-library-derivatives-and-pages.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              },
+              {
+                "fileName": "430-document-library-sharing-permissions.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              }
+            ],
+            "tablesCreated": 0,
+            "errors": 4,
+            "startTime": "2025-10-12T20:06:11.968Z",
+            "endTime": "2025-10-12T20:06:12.219Z",
+            "duration": 251
+          },
+          {
+            "name": "Phase 6: Advanced Features",
+            "description": "Advanced class management and attendance features",
+            "files": [
+              {
+                "fileName": "100-class-assignments-and-policies.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "150-attendance-advanced.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              },
+              {
+                "fileName": "510-attendance-qr-and-adjustments.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              },
+              {
+                "fileName": "520-session-content-links.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              }
+            ],
+            "tablesCreated": 0,
+            "errors": 4,
+            "startTime": "2025-10-12T20:06:12.220Z",
+            "endTime": "2025-10-12T20:06:12.434Z",
+            "duration": 214
+          },
+          {
+            "name": "Phase 7: Exam System",
+            "description": "Comprehensive exam and testing system",
+            "files": [
+              {
+                "fileName": "300-exam-bank.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'assignment_questions'"
+              },
+              {
+                "fileName": "310-exam-events-and-organization.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "320-exam-attempts-and-logs.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'exam_events'"
+              },
+              {
+                "fileName": "330-exam-proctoring.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'exam_attempts'"
+              },
+              {
+                "fileName": "340-exam-grading.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'exam_attempts'"
+              },
+              {
+                "fileName": "350-exam-policies-and-requests.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'exam_events'"
+              }
+            ],
+            "tablesCreated": 0,
+            "errors": 6,
+            "startTime": "2025-10-12T20:06:12.435Z",
+            "endTime": "2025-10-12T20:06:12.817Z",
+            "duration": 382
+          },
+          {
+            "name": "Phase 8: Business Operations",
+            "description": "Business operations, billing, and communications",
+            "files": [
+              {
+                "fileName": "020-billing-and-payments.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "billing_plans",
+                  "subscriptions",
+                  "invoices",
+                  "invoice_items",
+                  "payment_methods",
+                  "payments",
+                  "payment_transactions",
+                  "refunds",
+                  "gateway_events"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "030-admissions-and-crm.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "lead_sources",
+                  "leads",
+                  "enquiries",
+                  "applications",
+                  "contracts",
+                  "contract_items",
+                  "customer_interactions",
+                  "support_tickets"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "070-qa-and-surveys.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "080-communications-and-qa-threads.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "120-certificates.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              },
+              {
+                "fileName": "130-notifications.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "140-calendar-and-meetings.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              }
+            ],
+            "tablesCreated": 17,
+            "errors": 5,
+            "startTime": "2025-10-12T20:06:12.817Z",
+            "endTime": "2025-10-12T20:06:13.503Z",
+            "duration": 686
+          },
+          {
+            "name": "Phase 9: Analytics & Reporting",
+            "description": "Analytics, reporting, and data import/export",
+            "files": [
+              {
+                "fileName": "090-reporting-and-tracking.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "160-import-export.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "import_jobs",
+                  "import_results"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "170-engagement-and-risk.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              },
+              {
+                "fileName": "560-calendar-attendance-analytics.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              }
+            ],
+            "tablesCreated": 2,
+            "errors": 3,
+            "startTime": "2025-10-12T20:06:13.503Z",
+            "endTime": "2025-10-12T20:06:13.749Z",
+            "duration": 246
+          },
+          {
+            "name": "Phase 10: Staff & Operations",
+            "description": "Staff management and operational features",
+            "files": [
+              {
+                "fileName": "530-teacher-attendance-and-timesheets.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'class_sessions'"
+              },
+              {
+                "fileName": "540-staff-shifts-and-attendance.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "staff_shifts",
+                  "staff_shift_assignments",
+                  "staff_attendance",
+                  "time_off_requests",
+                  "overtime_requests",
+                  "geo_zones",
+                  "staff_devices"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "550-reminder-policies-and-jobs.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "reminder_policies",
+                  "reminder_jobs"
+                ],
+                "error": null
+              }
+            ],
+            "tablesCreated": 9,
+            "errors": 1,
+            "startTime": "2025-10-12T20:06:13.749Z",
+            "endTime": "2025-10-12T20:06:14.074Z",
+            "duration": 325
+          },
+          {
+            "name": "Phase 11: Activity Bank & Collections",
+            "description": "Activity templates and content collections",
+            "files": [
+              {
+                "fileName": "700-activity-bank.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'documents'"
+              },
+              {
+                "fileName": "710-activity-curriculum-links.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "unit_activity_links"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "720-activity-instances-and-responses.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'session_activities'"
+              },
+              {
+                "fileName": "220-collections-and-sharing.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "assignment_collections",
+                  "assignment_collection_items",
+                  "game_collections",
+                  "game_collection_items",
+                  "assignment_permissions",
+                  "game_permissions"
+                ],
+                "error": null
+              }
+            ],
+            "tablesCreated": 7,
+            "errors": 2,
+            "startTime": "2025-10-12T20:06:14.075Z",
+            "endTime": "2025-10-12T20:06:14.472Z",
+            "duration": 397
+          },
+          {
+            "name": "Phase 12: External Integrations",
+            "description": "External integrations and student portfolios",
+            "files": [
+              {
+                "fileName": "230-external-providers-and-standards.sql",
+                "status": "success",
+                "tablesCreated": [
+                  "game_providers",
+                  "provider_accounts",
+                  "external_game_mappings",
+                  "scorm_packages",
+                  "xapi_statements"
+                ],
+                "error": null
+              },
+              {
+                "fileName": "240-student-portfolio.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "500-calendar-recurrence-and-events.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              }
+            ],
+            "tablesCreated": 5,
+            "errors": 2,
+            "startTime": "2025-10-12T20:06:14.473Z",
+            "endTime": "2025-10-12T20:06:14.739Z",
+            "duration": 266
+          },
+          {
+            "name": "Phase 13: Advanced Gamification",
+            "description": "Advanced gamification and grading policies",
+            "files": [
+              {
+                "fileName": "210-class-game-assignments.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              },
+              {
+                "fileName": "630-grading-policies-and-gamification.sql",
+                "status": "error",
+                "tablesCreated": [],
+                "error": "Failed to open the referenced table 'classes'"
+              }
+            ],
+            "tablesCreated": 0,
+            "errors": 2,
+            "startTime": "2025-10-12T20:06:14.740Z",
+            "endTime": "2025-10-12T20:06:14.883Z",
+            "duration": 143
+          }
+        ],
+        "totalTables": 0,
+        "errors": [],
+        "summary": "COMPLETED_WITH_ERRORS (39)",
+        "endTime": "2025-10-12T20:06:15.049Z",
+        "duration": 4361,
+        "initialTableCount": 31,
+        "finalTableCount": 94,
+        "tablesAdded": 63,
+        "validation": {
+          "foreignKeys": 198,
+          "indexedTables": 94
+        }
+      },
+      "endTime": "2025-10-12T20:06:15.050Z",
+      "duration": 4363
+    }
+  ],
+  "summary": "",
+  "recommendations": [
+    "Review error logs and fix issues before proceeding",
+    "Consider restoring from backup if critical errors occurred"
+  ],
+  "statistics": {
+    "totalTables": 94,
+    "tablesAdded": 63,
+    "expansionPercentage": 67
+  }
+}

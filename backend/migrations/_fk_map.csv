@@ -1,0 +1,464 @@
+File,Table,Columns,RefTable,RefColumns,Options
+010-rbac-and-organization.sql,org_units,parent_id,org_units,id,ON UPDATE CASCADE ON DELETE SET NULL;
+010-rbac-and-organization.sql,org_units,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,org_units,campus_id,campuses,id,ON UPDATE CASCADE ON DELETE SET NULL;
+010-rbac-and-organization.sql,program_definitions,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,program_owners,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+010-rbac-and-organization.sql,program_owners,program_id,program_definitions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,role_permissions,permission_id,permissions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,role_permissions,role_id,roles,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,role_permissions,granted_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+010-rbac-and-organization.sql,roles,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE SET NULL
+010-rbac-and-organization.sql,user_org_units,org_unit_id,org_units,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,user_org_units,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,user_roles,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,user_roles,role_id,roles,id,ON UPDATE CASCADE ON DELETE CASCADE;
+010-rbac-and-organization.sql,user_roles,campus_id,campuses,id,ON UPDATE CASCADE ON DELETE SET NULL;
+020-billing-and-payments.sql,invoice_items,invoice_id,invoices,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,invoices,subscription_id,subscriptions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+020-billing-and-payments.sql,invoices,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,payment_methods,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,payment_transactions,payment_id,payments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,payments,invoice_id,invoices,id,ON UPDATE CASCADE ON DELETE SET NULL;
+020-billing-and-payments.sql,payments,payment_method_id,payment_methods,id,ON UPDATE CASCADE ON DELETE SET NULL;
+020-billing-and-payments.sql,payments,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,refunds,payment_id,payments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,subscriptions,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+020-billing-and-payments.sql,subscriptions,plan_id,billing_plans,id,ON UPDATE CASCADE;
+030-admissions-and-crm.sql,applications,desired_program_id,program_definitions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,applications,student_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,applications,lead_id,leads,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,applications,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,contract_items,contract_id,contracts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,contracts,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,contracts,application_id,applications,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,contracts,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,customer_interactions,student_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,customer_interactions,lead_id,leads,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,customer_interactions,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,customer_interactions,user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,enquiries,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,enquiries,lead_id,leads,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,enquiries,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,lead_sources,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE
+030-admissions-and-crm.sql,leads,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,leads,source_id,lead_sources,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,leads,assigned_to,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,support_tickets,assigned_to,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+030-admissions-and-crm.sql,support_tickets,created_by,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+030-admissions-and-crm.sql,support_tickets,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,attendance_records,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,attendance_records,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,class_enrollments,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,class_enrollments,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,class_sessions,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,class_sessions,unit_blueprint_id,unit_blueprints,id,ON UPDATE CASCADE ON DELETE SET NULL;
+040-students-enrollment-attendance.sql,class_teachers,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+040-students-enrollment-attendance.sql,class_teachers,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,guardians,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,student_guardians,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,student_guardians,guardian_id,guardians,id,ON UPDATE CASCADE ON DELETE CASCADE
+040-students-enrollment-attendance.sql,student_profiles,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+040-students-enrollment-attendance.sql,student_profiles,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+050-session-plans-and-materials.sql,session_activities,session_plan_id,session_plans,id,ON UPDATE CASCADE ON DELETE CASCADE;
+050-session-plans-and-materials.sql,session_materials,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+050-session-plans-and-materials.sql,session_materials,session_activity_id,session_activities,id,ON UPDATE CASCADE ON DELETE SET NULL;
+050-session-plans-and-materials.sql,session_materials,session_plan_id,session_plans,id,ON UPDATE CASCADE ON DELETE CASCADE;
+050-session-plans-and-materials.sql,session_plans,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+050-session-plans-and-materials.sql,session_plans,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+060-assessment-assignments-gradebook.sql,assessment_items,assessment_id,assessments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,assessment_results,assessment_id,assessments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,assessment_results,graded_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+060-assessment-assignments-gradebook.sql,assessment_results,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,assessments,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,assessments,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+060-assessment-assignments-gradebook.sql,assessments,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+060-assessment-assignments-gradebook.sql,assignment_submissions,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,assignment_submissions,graded_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+060-assessment-assignments-gradebook.sql,assignment_submissions,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+060-assessment-assignments-gradebook.sql,assignment_submissions,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,grade_items,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,gradebook_entries,grade_item_id,grade_items,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,gradebook_entries,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,gradebook_entries,graded_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+060-assessment-assignments-gradebook.sql,rubric_criteria,rubric_id,rubrics,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,rubric_scores,submission_id,assignment_submissions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,rubric_scores,assessment_result_id,assessment_results,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,rubric_scores,rubric_criterion_id,rubric_criteria,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,rubrics,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,rubrics,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+060-assessment-assignments-gradebook.sql,submission_feedback,submission_id,assignment_submissions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,submission_feedback,teacher_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+060-assessment-assignments-gradebook.sql,submission_files,submission_id,assignment_submissions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,class_observations,observer_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,class_observations,rubric_id,rubrics,id,ON UPDATE CASCADE ON DELETE SET NULL;
+070-qa-and-surveys.sql,class_observations,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,class_observations,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+070-qa-and-surveys.sql,observation_scores,rubric_criterion_id,rubric_criteria,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,observation_scores,observation_id,class_observations,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,survey_answers,response_id,survey_responses,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,survey_answers,question_id,survey_questions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,survey_questions,survey_id,surveys,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,survey_responses,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+070-qa-and-surveys.sql,survey_responses,survey_id,surveys,id,ON UPDATE CASCADE ON DELETE CASCADE;
+070-qa-and-surveys.sql,survey_responses,respondent_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+070-qa-and-surveys.sql,surveys,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,post_attachments,post_id,posts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,post_attachments,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+080-communications-and-qa-threads.sql,post_reactions,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+080-communications-and-qa-threads.sql,post_reactions,post_id,posts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,posts,author_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,posts,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+080-communications-and-qa-threads.sql,posts,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,qa_messages,thread_id,qa_threads,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,qa_messages,author_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,qa_messages,parent_message_id,qa_messages,id,ON UPDATE CASCADE ON DELETE SET NULL;
+080-communications-and-qa-threads.sql,qa_threads,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+080-communications-and-qa-threads.sql,qa_threads,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+080-communications-and-qa-threads.sql,qa_threads,created_by,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+090-reporting-and-tracking.sql,attendance_summary,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+090-reporting-and-tracking.sql,attendance_summary,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+090-reporting-and-tracking.sql,completion_tracking,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+090-reporting-and-tracking.sql,completion_tracking,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+090-reporting-and-tracking.sql,grade_summary,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+090-reporting-and-tracking.sql,grade_summary,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+090-reporting-and-tracking.sql,learning_progress,unit_id,unit_blueprints,id,ON UPDATE CASCADE ON DELETE SET NULL;
+090-reporting-and-tracking.sql,learning_progress,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+090-reporting-and-tracking.sql,learning_progress,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+100-class-assignments-and-policies.sql,class_assignment_overrides,class_assignment_id,class_assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+100-class-assignments-and-policies.sql,class_assignment_overrides,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+100-class-assignments-and-policies.sql,class_assignment_overrides,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+100-class-assignments-and-policies.sql,class_assignments,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+100-class-assignments-and-policies.sql,class_assignments,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+100-class-assignments-and-policies.sql,class_assignments,assigned_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+100-class-assignments-and-policies.sql,class_policies,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+100-class-assignments-and-policies.sql,class_policies,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+110-student-groups-and-sessions.sql,group_memberships,student_group_id,student_groups,id,ON UPDATE CASCADE ON DELETE CASCADE;
+110-student-groups-and-sessions.sql,group_memberships,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+110-student-groups-and-sessions.sql,session_group_assignments,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+110-student-groups-and-sessions.sql,session_group_assignments,session_activity_id,session_activities,id,ON UPDATE CASCADE ON DELETE SET NULL;
+110-student-groups-and-sessions.sql,session_group_assignments,student_group_id,student_groups,id,ON UPDATE CASCADE ON DELETE CASCADE;
+110-student-groups-and-sessions.sql,student_groups,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+110-student-groups-and-sessions.sql,student_groups,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+120-certificates.sql,certificate_issuances,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+120-certificates.sql,certificate_issuances,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+120-certificates.sql,certificate_issuances,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+120-certificates.sql,certificate_issuances,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+120-certificates.sql,certificate_issuances,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+120-certificates.sql,certificate_issuances,template_id,certificate_templates,id,ON UPDATE CASCADE ON DELETE RESTRICT;
+120-certificates.sql,certificate_templates,background_document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+120-certificates.sql,certificate_templates,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+120-certificates.sql,certificate_templates,updated_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+120-certificates.sql,certificate_templates,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+120-certificates.sql,certificate_verifications,issuance_id,certificate_issuances,id,ON UPDATE CASCADE ON DELETE CASCADE;
+130-notifications.sql,notification_templates,updated_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+130-notifications.sql,notification_templates,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+130-notifications.sql,notification_templates,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+130-notifications.sql,scheduled_notifications,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+130-notifications.sql,scheduled_notifications,template_id,notification_templates,id,ON UPDATE CASCADE ON DELETE CASCADE;
+130-notifications.sql,scheduled_notifications,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+130-notifications.sql,user_notifications,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE SET NULL;
+130-notifications.sql,user_notifications,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+130-notifications.sql,user_notifications,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+130-notifications.sql,user_notifications,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+130-notifications.sql,user_notifications,template_id,notification_templates,id,ON UPDATE CASCADE ON DELETE SET NULL;
+140-calendar-and-meetings.sql,calendar_events_sync,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE
+140-calendar-and-meetings.sql,external_calendars,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+140-calendar-and-meetings.sql,external_calendars,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+140-calendar-and-meetings.sql,meeting_attendance_logs,user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+140-calendar-and-meetings.sql,meeting_attendance_logs,meeting_integration_id,meeting_integrations,id,ON UPDATE CASCADE ON DELETE CASCADE;
+140-calendar-and-meetings.sql,meeting_integrations,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE
+150-attendance-advanced.sql,attendance_checkins,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+150-attendance-advanced.sql,attendance_checkins,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+150-attendance-advanced.sql,conflict_logs,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+150-attendance-advanced.sql,conflict_logs,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+150-attendance-advanced.sql,reschedule_history,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+150-attendance-advanced.sql,reschedule_history,changed_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+160-import-export.sql,import_jobs,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+160-import-export.sql,import_jobs,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+160-import-export.sql,import_results,job_id,import_jobs,id,ON UPDATE CASCADE ON DELETE CASCADE;
+170-engagement-and-risk.sql,activity_participation,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+170-engagement-and-risk.sql,activity_participation,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+170-engagement-and-risk.sql,dropout_risk_flags,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+170-engagement-and-risk.sql,dropout_risk_flags,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+180-assignment-question-bank.sql,assignment_passages,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+180-assignment-question-bank.sql,assignment_passages,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+180-assignment-question-bank.sql,assignment_passages,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+180-assignment-question-bank.sql,assignment_question_media,question_id,assignment_questions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+180-assignment-question-bank.sql,assignment_question_media,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+180-assignment-question-bank.sql,assignment_question_options,question_id,assignment_questions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+180-assignment-question-bank.sql,assignment_questions,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+180-assignment-question-bank.sql,assignment_questions,passage_id,assignment_passages,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,badges,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE
+190-games-gamification.sql,game_attempts,user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,game_attempts,game_session_id,game_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+190-games-gamification.sql,game_scores,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+190-games-gamification.sql,game_scores,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,game_scores,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+190-games-gamification.sql,game_sessions,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+190-games-gamification.sql,game_sessions,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+190-games-gamification.sql,game_sessions,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,game_sessions,host_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,game_sessions,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,leaderboard_entries,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+190-games-gamification.sql,leaderboard_entries,leaderboard_id,leaderboards,id,ON UPDATE CASCADE ON DELETE CASCADE;
+190-games-gamification.sql,leaderboards,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+190-games-gamification.sql,leaderboards,game_id,games,id,ON UPDATE CASCADE ON DELETE SET NULL;
+190-games-gamification.sql,user_badges,badge_id,badges,id,ON UPDATE CASCADE ON DELETE CASCADE
+190-games-gamification.sql,user_badges,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,assignment_attachments,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,assignment_attachments,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,assignment_tags,tag_id,tags,id,ON UPDATE CASCADE ON DELETE CASCADE
+200-assignments-games-pivots.sql,assignment_tags,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,game_attachments,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,game_attachments,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,game_tags,tag_id,tags,id,ON UPDATE CASCADE ON DELETE CASCADE
+200-assignments-games-pivots.sql,game_tags,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,unit_assignment_links,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,unit_assignment_links,unit_blueprint_id,unit_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,unit_game_links,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+200-assignments-games-pivots.sql,unit_game_links,unit_blueprint_id,unit_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+210-class-game-assignments.sql,class_game_assignment_groups,class_game_assignment_id,class_game_assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+210-class-game-assignments.sql,class_game_assignment_groups,student_group_id,student_groups,id,ON UPDATE CASCADE ON DELETE CASCADE
+210-class-game-assignments.sql,class_game_assignment_overrides,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+210-class-game-assignments.sql,class_game_assignment_overrides,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+210-class-game-assignments.sql,class_game_assignment_overrides,class_game_assignment_id,class_game_assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+210-class-game-assignments.sql,class_game_assignments,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+210-class-game-assignments.sql,class_game_assignments,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+210-class-game-assignments.sql,class_game_assignments,assigned_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+220-collections-and-sharing.sql,assignment_collection_items,collection_id,assignment_collections,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,assignment_collection_items,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,assignment_collections,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,assignment_collections,owner_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+220-collections-and-sharing.sql,assignment_permissions,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,game_collection_items,collection_id,game_collections,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,game_collection_items,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,game_collections,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+220-collections-and-sharing.sql,game_collections,owner_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+220-collections-and-sharing.sql,game_permissions,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+230-external-providers-and-standards.sql,external_game_mappings,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+230-external-providers-and-standards.sql,external_game_mappings,provider_id,game_providers,id,ON UPDATE CASCADE ON DELETE CASCADE
+230-external-providers-and-standards.sql,game_providers,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+230-external-providers-and-standards.sql,game_providers,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+230-external-providers-and-standards.sql,provider_accounts,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+230-external-providers-and-standards.sql,provider_accounts,provider_id,game_providers,id,ON UPDATE CASCADE ON DELETE CASCADE
+230-external-providers-and-standards.sql,scorm_packages,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+230-external-providers-and-standards.sql,scorm_packages,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+230-external-providers-and-standards.sql,xapi_statements,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+240-student-portfolio.sql,student_portfolio_items,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+240-student-portfolio.sql,student_portfolio_items,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_blueprint_attachments,blueprint_id,exam_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_blueprint_attachments,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_blueprint_tags,blueprint_id,exam_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_blueprint_tags,tag_id,tags,id,ON UPDATE CASCADE ON DELETE CASCADE
+300-exam-bank.sql,exam_blueprints,owner_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+300-exam-bank.sql,exam_blueprints,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+300-exam-bank.sql,exam_blueprints,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_blueprints,updated_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+300-exam-bank.sql,exam_items,section_id,exam_sections,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_items,passage_id,assignment_passages,id,ON UPDATE CASCADE ON DELETE SET NULL;
+300-exam-bank.sql,exam_items,question_id,assignment_questions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+300-exam-bank.sql,exam_sections,version_id,exam_versions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+300-exam-bank.sql,exam_versions,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+300-exam-bank.sql,exam_versions,blueprint_id,exam_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_events,campus_id,campuses,id,ON UPDATE CASCADE ON DELETE SET NULL;
+310-exam-events-and-organization.sql,exam_events,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+310-exam-events-and-organization.sql,exam_events,updated_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+310-exam-events-and-organization.sql,exam_events,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_events,exam_version_id,exam_versions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_events,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+310-exam-events-and-organization.sql,exam_registrations,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_registrations,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_room_allocations,exam_room_id,exam_rooms,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_room_allocations,student_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+310-exam-events-and-organization.sql,exam_room_allocations,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+310-exam-events-and-organization.sql,exam_rooms,campus_id,campuses,id,ON UPDATE CASCADE ON DELETE SET NULL;
+310-exam-events-and-organization.sql,proctor_assignments,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+310-exam-events-and-organization.sql,proctor_assignments,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_answer_events,attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_answer_events,exam_item_id,exam_items,id,ON UPDATE CASCADE ON DELETE SET NULL;
+320-exam-attempts-and-logs.sql,exam_attempt_items,exam_item_id,exam_items,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_attempt_items,graded_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+320-exam-attempts-and-logs.sql,exam_attempt_items,attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_attempts,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_attempts,exam_version_id,exam_versions,id,ON UPDATE CASCADE ON DELETE RESTRICT;
+320-exam-attempts-and-logs.sql,exam_attempts,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_timer_events,attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_timer_events,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+320-exam-attempts-and-logs.sql,exam_uploads,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+320-exam-attempts-and-logs.sql,exam_uploads,attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+320-exam-attempts-and-logs.sql,exam_uploads,exam_item_id,exam_items,id,ON UPDATE CASCADE ON DELETE SET NULL;
+330-exam-proctoring.sql,proctoring_events,proctoring_session_id,proctoring_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+330-exam-proctoring.sql,proctoring_sessions,exam_attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+330-exam-proctoring.sql,proctoring_sessions,proctor_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+330-exam-proctoring.sql,proctoring_snapshots,thumbnail_document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+330-exam-proctoring.sql,proctoring_snapshots,image_document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+330-exam-proctoring.sql,proctoring_snapshots,proctoring_session_id,proctoring_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+340-exam-grading.sql,grading_assignments,grader_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+340-exam-grading.sql,grading_assignments,exam_attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+340-exam-grading.sql,grading_marks,grader_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+340-exam-grading.sql,grading_marks,rubric_criterion_id,rubric_criteria,id,ON UPDATE CASCADE ON DELETE SET NULL;
+340-exam-grading.sql,grading_marks,attempt_item_id,exam_attempt_items,id,ON UPDATE CASCADE ON DELETE CASCADE;
+340-exam-grading.sql,grading_resolutions,resolved_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+340-exam-grading.sql,grading_resolutions,exam_attempt_id,exam_attempts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+340-exam-grading.sql,plagiarism_checks,attempt_item_id,exam_attempt_items,id,ON UPDATE CASCADE ON DELETE CASCADE;
+340-exam-grading.sql,speech_metrics,attempt_item_id,exam_attempt_items,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,exam_policies,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,exam_policies,blueprint_id,exam_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,reschedule_requests,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,reschedule_requests,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,reschedule_requests,decided_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+350-exam-policies-and-requests.sql,retake_requests,exam_event_id,exam_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,retake_requests,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+350-exam-policies-and-requests.sql,retake_requests,decided_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+400-document-library-core-extensions.sql,document_external_refs,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+400-document-library-core-extensions.sql,document_favorites,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+400-document-library-core-extensions.sql,document_favorites,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+400-document-library-core-extensions.sql,document_tags,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+400-document-library-core-extensions.sql,document_tags,tag_id,tags,id,ON UPDATE CASCADE ON DELETE CASCADE
+410-document-library-ingestion-and-processing.sql,document_ai_tag_suggestions,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+410-document-library-ingestion-and-processing.sql,document_ai_tag_suggestions,accepted_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+410-document-library-ingestion-and-processing.sql,document_ai_tasks,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+410-document-library-ingestion-and-processing.sql,document_processing_jobs,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+410-document-library-ingestion-and-processing.sql,ingestion_items,job_id,ingestion_jobs,id,ON UPDATE CASCADE ON DELETE CASCADE;
+410-document-library-ingestion-and-processing.sql,ingestion_items,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+410-document-library-ingestion-and-processing.sql,ingestion_jobs,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+410-document-library-ingestion-and-processing.sql,ingestion_jobs,source_id,ingestion_sources,id,ON UPDATE CASCADE ON DELETE SET NULL;
+410-document-library-ingestion-and-processing.sql,ingestion_jobs,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+410-document-library-ingestion-and-processing.sql,ingestion_sources,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+410-document-library-ingestion-and-processing.sql,ingestion_sources,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+420-document-library-derivatives-and-pages.sql,document_derivatives,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+420-document-library-derivatives-and-pages.sql,document_pages,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE
+420-document-library-derivatives-and-pages.sql,document_previews,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+430-document-library-sharing-permissions.sql,document_collection_favorites,collection_id,document_collections,id,ON UPDATE CASCADE ON DELETE CASCADE;
+430-document-library-sharing-permissions.sql,document_collection_favorites,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+430-document-library-sharing-permissions.sql,document_collection_permissions,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+430-document-library-sharing-permissions.sql,document_collection_permissions,collection_id,document_collections,id,ON UPDATE CASCADE ON DELETE CASCADE;
+430-document-library-sharing-permissions.sql,document_shares,document_id,documents,id,ON UPDATE CASCADE ON DELETE CASCADE;
+430-document-library-sharing-permissions.sql,document_shares,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+500-calendar-recurrence-and-events.sql,calendar_event_participants,calendar_event_id,calendar_events,id,ON UPDATE CASCADE ON DELETE CASCADE;
+500-calendar-recurrence-and-events.sql,calendar_events,campus_id,campuses,id,ON UPDATE CASCADE ON DELETE SET NULL;
+500-calendar-recurrence-and-events.sql,calendar_events,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+500-calendar-recurrence-and-events.sql,calendar_events,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+500-calendar-recurrence-and-events.sql,recurrence_rules,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+500-calendar-recurrence-and-events.sql,recurrence_rules,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+500-calendar-recurrence-and-events.sql,session_recurrences,recurrence_rule_id,recurrence_rules,id,ON UPDATE CASCADE ON DELETE CASCADE;
+500-calendar-recurrence-and-events.sql,session_recurrences,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+500-calendar-recurrence-and-events.sql,session_recurrences,linked_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+510-attendance-qr-and-adjustments.sql,attendance_adjustments,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+510-attendance-qr-and-adjustments.sql,attendance_adjustments,requested_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+510-attendance-qr-and-adjustments.sql,attendance_adjustments,approved_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+510-attendance-qr-and-adjustments.sql,attendance_adjustments,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+510-attendance-qr-and-adjustments.sql,qr_tokens,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+510-attendance-qr-and-adjustments.sql,qr_tokens,issued_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+520-session-content-links.sql,session_assignments,assignment_id,assignments,id,ON UPDATE CASCADE ON DELETE CASCADE;
+520-session-content-links.sql,session_assignments,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+520-session-content-links.sql,session_game_assignments,game_id,games,id,ON UPDATE CASCADE ON DELETE CASCADE;
+520-session-content-links.sql,session_game_assignments,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+530-teacher-attendance-and-timesheets.sql,substitution_requests,requester_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+530-teacher-attendance-and-timesheets.sql,substitution_requests,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+530-teacher-attendance-and-timesheets.sql,substitution_requests,decided_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+530-teacher-attendance-and-timesheets.sql,substitution_requests,substitute_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+530-teacher-attendance-and-timesheets.sql,teacher_attendance,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE CASCADE;
+530-teacher-attendance-and-timesheets.sql,teacher_attendance,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+530-teacher-attendance-and-timesheets.sql,teacher_timesheets,approved_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+530-teacher-attendance-and-timesheets.sql,teacher_timesheets,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+540-staff-shifts-and-attendance.sql,geo_zones,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE
+540-staff-shifts-and-attendance.sql,overtime_requests,decided_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+540-staff-shifts-and-attendance.sql,overtime_requests,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+540-staff-shifts-and-attendance.sql,staff_attendance,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+540-staff-shifts-and-attendance.sql,staff_attendance,shift_assignment_id,staff_shift_assignments,id,ON UPDATE CASCADE ON DELETE SET NULL;
+540-staff-shifts-and-attendance.sql,staff_devices,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+540-staff-shifts-and-attendance.sql,staff_shift_assignments,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+540-staff-shifts-and-attendance.sql,staff_shift_assignments,staff_shift_id,staff_shifts,id,ON UPDATE CASCADE ON DELETE CASCADE;
+540-staff-shifts-and-attendance.sql,staff_shifts,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+540-staff-shifts-and-attendance.sql,staff_shifts,campus_id,campuses,id,ON UPDATE CASCADE ON DELETE SET NULL;
+540-staff-shifts-and-attendance.sql,staff_shifts,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+540-staff-shifts-and-attendance.sql,time_off_requests,decided_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+540-staff-shifts-and-attendance.sql,time_off_requests,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+550-reminder-policies-and-jobs.sql,reminder_jobs,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+550-reminder-policies-and-jobs.sql,reminder_jobs,policy_id,reminder_policies,id,ON UPDATE CASCADE ON DELETE SET NULL;
+550-reminder-policies-and-jobs.sql,reminder_jobs,template_id,notification_templates,id,ON UPDATE CASCADE ON DELETE SET NULL;
+550-reminder-policies-and-jobs.sql,reminder_policies,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+550-reminder-policies-and-jobs.sql,reminder_policies,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+560-calendar-attendance-analytics.sql,punctuality_metrics,class_session_id,class_sessions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+560-calendar-attendance-analytics.sql,punctuality_metrics,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+560-calendar-attendance-analytics.sql,staff_timesheets,approved_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+560-calendar-attendance-analytics.sql,staff_timesheets,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_anomalies,point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_anomalies,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_balances,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_balances,point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_balances,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_ledgers,point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_ledgers,rule_id,point_rules,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_ledgers,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_ledgers,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_ledgers,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_ledgers,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_limits,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_limits,point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_limits,rule_id,point_rules,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_review_queue,anomaly_id,point_anomalies,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_review_queue,reviewer_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_rules,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_rules,point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE CASCADE;
+600-points-economy-core.sql,point_rules,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+600-points-economy-core.sql,point_types,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE
+610-store-and-rewards.sql,reward_entitlements,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+610-store-and-rewards.sql,reward_entitlements,redemption_id,store_redemptions,id,ON UPDATE CASCADE ON DELETE SET NULL;
+610-store-and-rewards.sql,reward_usage_logs,used_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+610-store-and-rewards.sql,reward_usage_logs,entitlement_id,reward_entitlements,id,ON UPDATE CASCADE ON DELETE CASCADE;
+610-store-and-rewards.sql,store_items,point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE RESTRICT;
+610-store-and-rewards.sql,store_items,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+610-store-and-rewards.sql,store_items,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+610-store-and-rewards.sql,store_redemptions,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+610-store-and-rewards.sql,store_redemptions,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+610-store-and-rewards.sql,store_redemptions,decided_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+610-store-and-rewards.sql,store_redemptions,item_id,store_items,id,ON UPDATE CASCADE ON DELETE RESTRICT;
+620-streaks-and-quests.sql,quest_assignments,quest_id,quests,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,quest_progress,quest_id,quests,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,quest_progress,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+620-streaks-and-quests.sql,quest_rewards,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,quest_rewards,quest_id,quests,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,quest_task_progress,quest_id,quests,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,quest_task_progress,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE
+620-streaks-and-quests.sql,quest_task_progress,task_id,quest_tasks,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,quest_tasks,quest_id,quests,id,ON UPDATE CASCADE ON DELETE CASCADE
+620-streaks-and-quests.sql,quests,reward_point_type_id,point_types,id,ON UPDATE CASCADE ON DELETE SET NULL;
+620-streaks-and-quests.sql,quests,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+620-streaks-and-quests.sql,quests,reward_badge_id,badges,id,ON UPDATE CASCADE ON DELETE SET NULL;
+620-streaks-and-quests.sql,quests,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,streak_events,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,streak_events,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL;
+620-streaks-and-quests.sql,streaks,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+620-streaks-and-quests.sql,streaks,class_id,classes,id,ON UPDATE CASCADE ON DELETE SET NULL
+630-grading-policies-and-gamification.sql,class_gamification_policies,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+630-grading-policies-and-gamification.sql,class_gamification_policies,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+630-grading-policies-and-gamification.sql,grade_adjustments,student_user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+630-grading-policies-and-gamification.sql,grade_adjustments,applied_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+630-grading-policies-and-gamification.sql,grade_adjustments,class_id,classes,id,ON UPDATE CASCADE ON DELETE CASCADE;
+630-grading-policies-and-gamification.sql,grading_components,policy_id,level_grading_policies,id,ON UPDATE CASCADE ON DELETE CASCADE
+630-grading-policies-and-gamification.sql,level_grading_policies,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+630-grading-policies-and-gamification.sql,level_grading_policies,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL
+630-grading-policies-and-gamification.sql,level_skill_minima,policy_id,level_grading_policies,id,ON UPDATE CASCADE ON DELETE CASCADE
+700-activity-bank.sql,activity_template_assets,template_id,activity_templates,id,ON UPDATE CASCADE ON DELETE CASCADE;
+700-activity-bank.sql,activity_template_assets,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+700-activity-bank.sql,activity_template_roles,template_id,activity_templates,id,ON UPDATE CASCADE ON DELETE CASCADE;
+700-activity-bank.sql,activity_template_steps,template_id,activity_templates,id,ON UPDATE CASCADE ON DELETE CASCADE;
+700-activity-bank.sql,activity_template_tags,tag_id,tags,id,ON UPDATE CASCADE ON DELETE CASCADE
+700-activity-bank.sql,activity_template_tags,template_id,activity_templates,id,ON UPDATE CASCADE ON DELETE CASCADE;
+700-activity-bank.sql,activity_templates,tenant_id,tenants,id,ON UPDATE CASCADE ON DELETE CASCADE;
+700-activity-bank.sql,activity_templates,created_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+700-activity-bank.sql,activity_templates,updated_by,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+700-activity-bank.sql,activity_templates,owner_user_id,users,id,ON UPDATE CASCADE ON DELETE SET NULL;
+710-activity-curriculum-links.sql,unit_activity_links,activity_template_id,activity_templates,id,ON UPDATE CASCADE ON DELETE CASCADE;
+710-activity-curriculum-links.sql,unit_activity_links,unit_blueprint_id,unit_blueprints,id,ON UPDATE CASCADE ON DELETE CASCADE;
+720-activity-instances-and-responses.sql,activity_response_files,document_id,documents,id,ON UPDATE CASCADE ON DELETE SET NULL;
+720-activity-instances-and-responses.sql,activity_response_files,response_id,activity_responses,id,ON UPDATE CASCADE ON DELETE CASCADE;
+720-activity-instances-and-responses.sql,activity_responses,user_id,users,id,ON UPDATE CASCADE ON DELETE CASCADE;
+720-activity-instances-and-responses.sql,activity_responses,session_activity_id,session_activities,id,ON UPDATE CASCADE ON DELETE CASCADE;
+720-activity-instances-and-responses.sql,session_activity_groups,student_group_id,student_groups,id,ON UPDATE CASCADE ON DELETE CASCADE
+720-activity-instances-and-responses.sql,session_activity_groups,session_activity_id,session_activities,id,ON UPDATE CASCADE ON DELETE CASCADE;
+720-activity-instances-and-responses.sql,session_activity_instances,activity_template_id,activity_templates,id,ON UPDATE CASCADE ON DELETE CASCADE
+720-activity-instances-and-responses.sql,session_activity_instances,session_activity_id,session_activities,id,ON UPDATE CASCADE ON DELETE CASCADE;

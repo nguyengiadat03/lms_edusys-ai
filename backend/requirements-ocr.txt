@@ -1,0 +1,18 @@
+fastapi
+uvicorn[standard]
+python-multipart
+paddleocr
+paddlepaddle>=2.6.0  # Compatible with PaddleOCR 3.2.0
+torch
+torchaudio
+transformers
+moviepy
+PyMuPDF
+python-pptx
+python-docx
+Pillow
+opencv-python-headless
+numpy
+python-dotenv
+easyocr
+opencv-python

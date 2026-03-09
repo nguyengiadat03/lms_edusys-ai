@@ -1,0 +1,2696 @@
+{
+  "timestamp": "2025-10-12T20:14:44.640Z",
+  "database": "edusys_ai_2025_v1",
+  "validations": {
+    "tableStructure": {
+      "totalTables": 240,
+      "expectedTables": 214,
+      "missingTables": [],
+      "extraTables": [
+        "classes",
+        "document_collections",
+        "documents"
+      ],
+      "tables": [
+        {
+          "name": "activity_participation",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "activity_response_files",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "activity_responses",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "activity_template_assets",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "activity_template_roles",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "activity_template_steps",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "activity_template_tags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "activity_templates",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "applications",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "approvals",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 131072
+        },
+        {
+          "name": "assessment_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "assessment_results",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "assessments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "assignment_attachments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "assignment_collection_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "assignment_collections",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "assignment_passages",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "assignment_permissions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "assignment_practice_sessions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "assignment_question_media",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "assignment_question_options",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "assignment_questions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "assignment_submissions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "assignment_tags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "assignments",
+          "rows": 3,
+          "dataSize": 16384,
+          "indexSize": 131072
+        },
+        {
+          "name": "attendance_adjustments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "attendance_checkins",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "attendance_records",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "attendance_summary",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "audit_logs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "badges",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "billing_plans",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "calendar_event_participants",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "calendar_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "calendar_events_sync",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "campuses",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "certificate_issuances",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 114688
+        },
+        {
+          "name": "certificate_templates",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "certificate_verifications",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "class_assignment_overrides",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "class_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "class_enrollments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "class_game_assignment_groups",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "class_game_assignment_overrides",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "class_game_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "class_gamification_policies",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "class_observations",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "class_policies",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "class_sessions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "class_teachers",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "classes",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 131072
+        },
+        {
+          "name": "comments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "completion_tracking",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "conflict_logs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "contract_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "contracts",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "course_blueprints",
+          "rows": 1,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "curriculum_framework_tags",
+          "rows": 3,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "curriculum_framework_versions",
+          "rows": 1,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "curriculum_frameworks",
+          "rows": 1,
+          "dataSize": 16384,
+          "indexSize": 147456
+        },
+        {
+          "name": "customer_interactions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "document_ai_tag_suggestions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "document_ai_tasks",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "document_collection_favorites",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "document_collection_permissions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "document_collections",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "document_derivatives",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "document_external_refs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "document_favorites",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "document_pages",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "document_previews",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "document_processing_jobs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "document_shares",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "document_tags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "documents",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "dropout_risk_flags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "enquiries",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "exam_answer_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "exam_attempt_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "exam_attempts",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "exam_blueprint_attachments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "exam_blueprint_tags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "exam_blueprints",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 114688
+        },
+        {
+          "name": "exam_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 114688
+        },
+        {
+          "name": "exam_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "exam_policies",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "exam_registrations",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "exam_room_allocations",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "exam_rooms",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "exam_sections",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "exam_timer_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "exam_uploads",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "exam_versions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "external_calendars",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "external_game_mappings",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_attachments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_attempts",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_collection_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_collections",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_permissions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_providers",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "game_scores",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "game_sessions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "game_tags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "games",
+          "rows": 4,
+          "dataSize": 16384,
+          "indexSize": 180224
+        },
+        {
+          "name": "gateway_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "geo_zones",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "grade_adjustments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "grade_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "grade_summary",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "gradebook_entries",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "grading_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "grading_components",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "grading_marks",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "grading_resolutions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "group_memberships",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "guardians",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "import_jobs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "import_results",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "ingestion_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "ingestion_jobs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "ingestion_sources",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "invoice_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "invoices",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "kct_deployments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "kct_mappings",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 131072
+        },
+        {
+          "name": "kct_usage_tracking",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "lead_sources",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "leaderboard_entries",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "leaderboards",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "leads",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "learning_outcomes_tracking",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "learning_progress",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "level_grading_policies",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "level_skill_minima",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "meeting_attendance_logs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "meeting_integrations",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "notification_templates",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "observation_scores",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "org_units",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "overtime_requests",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "payment_methods",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "payment_transactions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "payments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "permissions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "plagiarism_checks",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "point_anomalies",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "point_balances",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "point_ledgers",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 114688
+        },
+        {
+          "name": "point_limits",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "point_review_queue",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "point_rules",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "point_types",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "post_attachments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "post_reactions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "posts",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "proctor_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "proctoring_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "proctoring_sessions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "proctoring_snapshots",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "program_definitions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "program_owners",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "provider_accounts",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "punctuality_metrics",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "qa_messages",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "qa_threads",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "qr_tokens",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "quest_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "quest_progress",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "quest_rewards",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "quest_task_progress",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "quest_tasks",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "quests",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "recurrence_rules",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "refunds",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "reminder_jobs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "reminder_policies",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "reschedule_history",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "reschedule_requests",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "retake_requests",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "reward_entitlements",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "reward_usage_logs",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "role_permissions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "roles",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "rubric_criteria",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "rubric_scores",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "rubrics",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "saved_views",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "scheduled_notifications",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "scorm_packages",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "session_activities",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "session_activity_groups",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "session_activity_instances",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "session_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "session_game_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "session_group_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "session_materials",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "session_plans",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "session_recurrences",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "settings",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 0
+        },
+        {
+          "name": "speech_metrics",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "staff_attendance",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "staff_devices",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "staff_shift_assignments",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "staff_shifts",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "staff_timesheets",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "store_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "store_redemptions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "streak_events",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "streaks",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "student_groups",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "student_guardians",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "student_portfolio_items",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "student_profiles",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "submission_feedback",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "submission_files",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "subscriptions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "substitution_requests",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "support_tickets",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "survey_answers",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "survey_questions",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "survey_responses",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "surveys",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "tags",
+          "rows": 3,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "teacher_attendance",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "teacher_timesheets",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "tenants",
+          "rows": 1,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "time_off_requests",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 49152
+        },
+        {
+          "name": "unit_activity_links",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "unit_assignment_links",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "unit_blueprint_tags",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "unit_blueprints",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "unit_game_links",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "unit_resources",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 98304
+        },
+        {
+          "name": "user_badges",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        },
+        {
+          "name": "user_notifications",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 114688
+        },
+        {
+          "name": "user_org_units",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 16384
+        },
+        {
+          "name": "user_roles",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 65536
+        },
+        {
+          "name": "users",
+          "rows": 1,
+          "dataSize": 16384,
+          "indexSize": 81920
+        },
+        {
+          "name": "xapi_statements",
+          "rows": 0,
+          "dataSize": 16384,
+          "indexSize": 32768
+        }
+      ]
+    },
+    "foreignKeys": {
+      "totalConstraints": 533,
+      "brokenConstraints": [],
+      "isValid": true
+    },
+    "indexes": {
+      "totalIndexes": 1081,
+      "indexedTables": 240,
+      "tablesWithoutIndexes": [
+        "settings"
+      ],
+      "indexStats": {
+        "activity_participation": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "activity_response_files": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "activity_responses": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "activity_template_assets": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "activity_template_roles": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "activity_template_steps": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "activity_template_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "activity_templates": {
+          "total": 8,
+          "unique": 3,
+          "primary": 1
+        },
+        "applications": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "approvals": {
+          "total": 10,
+          "unique": 1,
+          "primary": 1
+        },
+        "assessment_items": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "assessment_results": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "assessments": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_attachments": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_collection_items": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "assignment_collections": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_passages": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_permissions": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_practice_sessions": {
+          "total": 7,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_question_media": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_question_options": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_questions": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "assignment_submissions": {
+          "total": 8,
+          "unique": 4,
+          "primary": 1
+        },
+        "assignment_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "assignments": {
+          "total": 14,
+          "unique": 1,
+          "primary": 1
+        },
+        "attendance_adjustments": {
+          "total": 8,
+          "unique": 4,
+          "primary": 1
+        },
+        "attendance_checkins": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "attendance_records": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "attendance_summary": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "audit_logs": {
+          "total": 8,
+          "unique": 1,
+          "primary": 1
+        },
+        "badges": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "billing_plans": {
+          "total": 2,
+          "unique": 2,
+          "primary": 1
+        },
+        "calendar_event_participants": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "calendar_events": {
+          "total": 7,
+          "unique": 1,
+          "primary": 1
+        },
+        "calendar_events_sync": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "campuses": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "certificate_issuances": {
+          "total": 8,
+          "unique": 2,
+          "primary": 1
+        },
+        "certificate_templates": {
+          "total": 6,
+          "unique": 3,
+          "primary": 1
+        },
+        "certificate_verifications": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "class_assignment_overrides": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "class_assignments": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "class_enrollments": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "class_game_assignment_groups": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "class_game_assignment_overrides": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "class_game_assignments": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "class_gamification_policies": {
+          "total": 3,
+          "unique": 2,
+          "primary": 1
+        },
+        "class_observations": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "class_policies": {
+          "total": 3,
+          "unique": 2,
+          "primary": 1
+        },
+        "class_sessions": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "class_teachers": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "classes": {
+          "total": 10,
+          "unique": 3,
+          "primary": 1
+        },
+        "comments": {
+          "total": 8,
+          "unique": 1,
+          "primary": 1
+        },
+        "completion_tracking": {
+          "total": 6,
+          "unique": 4,
+          "primary": 1
+        },
+        "conflict_logs": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "contract_items": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "contracts": {
+          "total": 6,
+          "unique": 2,
+          "primary": 1
+        },
+        "course_blueprints": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "curriculum_framework_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "curriculum_framework_versions": {
+          "total": 10,
+          "unique": 3,
+          "primary": 1
+        },
+        "curriculum_frameworks": {
+          "total": 11,
+          "unique": 2,
+          "primary": 1
+        },
+        "customer_interactions": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_ai_tag_suggestions": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_ai_tasks": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_collection_favorites": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "document_collection_permissions": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_collections": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_derivatives": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_external_refs": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "document_favorites": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "document_pages": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "document_previews": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_processing_jobs": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_shares": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "document_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "documents": {
+          "total": 9,
+          "unique": 1,
+          "primary": 1
+        },
+        "dropout_risk_flags": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "enquiries": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_answer_events": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_attempt_items": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "exam_attempts": {
+          "total": 7,
+          "unique": 4,
+          "primary": 1
+        },
+        "exam_blueprint_attachments": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_blueprint_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "exam_blueprints": {
+          "total": 9,
+          "unique": 3,
+          "primary": 1
+        },
+        "exam_events": {
+          "total": 8,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_items": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_policies": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_registrations": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "exam_room_allocations": {
+          "total": 7,
+          "unique": 4,
+          "primary": 1
+        },
+        "exam_rooms": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "exam_sections": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_timer_events": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_uploads": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "exam_versions": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "external_calendars": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "external_game_mappings": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "game_attachments": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "game_attempts": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "game_collection_items": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "game_collections": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "game_permissions": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "game_providers": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "game_scores": {
+          "total": 6,
+          "unique": 4,
+          "primary": 1
+        },
+        "game_sessions": {
+          "total": 7,
+          "unique": 1,
+          "primary": 1
+        },
+        "game_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "games": {
+          "total": 18,
+          "unique": 1,
+          "primary": 1
+        },
+        "gateway_events": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "geo_zones": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "grade_adjustments": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "grade_items": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "grade_summary": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "gradebook_entries": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "grading_assignments": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "grading_components": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "grading_marks": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "grading_resolutions": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "group_memberships": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "guardians": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "import_jobs": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "import_results": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "ingestion_items": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "ingestion_jobs": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "ingestion_sources": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "invoice_items": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "invoices": {
+          "total": 5,
+          "unique": 2,
+          "primary": 1
+        },
+        "kct_deployments": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "kct_mappings": {
+          "total": 12,
+          "unique": 1,
+          "primary": 1
+        },
+        "kct_usage_tracking": {
+          "total": 10,
+          "unique": 1,
+          "primary": 1
+        },
+        "lead_sources": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "leaderboard_entries": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "leaderboards": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "leads": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "learning_outcomes_tracking": {
+          "total": 8,
+          "unique": 1,
+          "primary": 1
+        },
+        "learning_progress": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "level_grading_policies": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "level_skill_minima": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "meeting_attendance_logs": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "meeting_integrations": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "notification_templates": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "observation_scores": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "org_units": {
+          "total": 6,
+          "unique": 3,
+          "primary": 1
+        },
+        "overtime_requests": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "payment_methods": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "payment_transactions": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "payments": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "permissions": {
+          "total": 2,
+          "unique": 2,
+          "primary": 1
+        },
+        "plagiarism_checks": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "point_anomalies": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "point_balances": {
+          "total": 7,
+          "unique": 4,
+          "primary": 1
+        },
+        "point_ledgers": {
+          "total": 10,
+          "unique": 1,
+          "primary": 1
+        },
+        "point_limits": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "point_review_queue": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "point_rules": {
+          "total": 6,
+          "unique": 3,
+          "primary": 1
+        },
+        "point_types": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "post_attachments": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "post_reactions": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "posts": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "proctor_assignments": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "proctoring_events": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "proctoring_sessions": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "proctoring_snapshots": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "program_definitions": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "program_owners": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "provider_accounts": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "punctuality_metrics": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "qa_messages": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "qa_threads": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "qr_tokens": {
+          "total": 6,
+          "unique": 3,
+          "primary": 1
+        },
+        "quest_assignments": {
+          "total": 6,
+          "unique": 4,
+          "primary": 1
+        },
+        "quest_progress": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "quest_rewards": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "quest_task_progress": {
+          "total": 6,
+          "unique": 4,
+          "primary": 1
+        },
+        "quest_tasks": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "quests": {
+          "total": 6,
+          "unique": 3,
+          "primary": 1
+        },
+        "recurrence_rules": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "refunds": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "reminder_jobs": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "reminder_policies": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "reschedule_history": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "reschedule_requests": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "retake_requests": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "reward_entitlements": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "reward_usage_logs": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "role_permissions": {
+          "total": 4,
+          "unique": 2,
+          "primary": 2
+        },
+        "roles": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "rubric_criteria": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "rubric_scores": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "rubrics": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "saved_views": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "scheduled_notifications": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "scorm_packages": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "session_activities": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "session_activity_groups": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "session_activity_instances": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "session_assignments": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "session_game_assignments": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "session_group_assignments": {
+          "total": 7,
+          "unique": 4,
+          "primary": 1
+        },
+        "session_materials": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "session_plans": {
+          "total": 3,
+          "unique": 2,
+          "primary": 1
+        },
+        "session_recurrences": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "settings": {
+          "total": 1,
+          "unique": 1,
+          "primary": 1
+        },
+        "speech_metrics": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "staff_attendance": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "staff_devices": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "staff_shift_assignments": {
+          "total": 6,
+          "unique": 5,
+          "primary": 1
+        },
+        "staff_shifts": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "staff_timesheets": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "store_items": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "store_redemptions": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "streak_events": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "streaks": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "student_groups": {
+          "total": 5,
+          "unique": 3,
+          "primary": 1
+        },
+        "student_guardians": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "student_portfolio_items": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "student_profiles": {
+          "total": 3,
+          "unique": 3,
+          "primary": 1
+        },
+        "submission_feedback": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "submission_files": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "subscriptions": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "substitution_requests": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "support_tickets": {
+          "total": 5,
+          "unique": 1,
+          "primary": 1
+        },
+        "survey_answers": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        },
+        "survey_questions": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "survey_responses": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "surveys": {
+          "total": 2,
+          "unique": 1,
+          "primary": 1
+        },
+        "tags": {
+          "total": 6,
+          "unique": 3,
+          "primary": 1
+        },
+        "teacher_attendance": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "teacher_timesheets": {
+          "total": 5,
+          "unique": 4,
+          "primary": 1
+        },
+        "tenants": {
+          "total": 4,
+          "unique": 2,
+          "primary": 1
+        },
+        "time_off_requests": {
+          "total": 4,
+          "unique": 1,
+          "primary": 1
+        },
+        "unit_activity_links": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "unit_assignment_links": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "unit_blueprint_tags": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "unit_blueprints": {
+          "total": 6,
+          "unique": 1,
+          "primary": 1
+        },
+        "unit_game_links": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "unit_resources": {
+          "total": 8,
+          "unique": 1,
+          "primary": 1
+        },
+        "user_badges": {
+          "total": 4,
+          "unique": 3,
+          "primary": 1
+        },
+        "user_notifications": {
+          "total": 8,
+          "unique": 1,
+          "primary": 1
+        },
+        "user_org_units": {
+          "total": 3,
+          "unique": 2,
+          "primary": 2
+        },
+        "user_roles": {
+          "total": 7,
+          "unique": 4,
+          "primary": 1
+        },
+        "users": {
+          "total": 7,
+          "unique": 2,
+          "primary": 1
+        },
+        "xapi_statements": {
+          "total": 3,
+          "unique": 1,
+          "primary": 1
+        }
+      }
+    },
+    "dataConsistency": {
+      "checks": [
+        {
+          "name": "Tenant Consistency",
+          "status": "success",
+          "details": "1 tenants, 1 user tenants, 1 framework tenants"
+        },
+        {
+          "name": "User-Role Consistency",
+          "status": "success",
+          "details": "All user-role assignments valid"
+        },
+        {
+          "name": "Assignment-Session Consistency",
+          "status": "success",
+          "details": "All practice sessions valid"
+        }
+      ],
+      "successCount": 3,
+      "warningCount": 0,
+      "errorCount": 0,
+      "isValid": true
+    }
+  },
+  "overallStatus": "VALID"
+}

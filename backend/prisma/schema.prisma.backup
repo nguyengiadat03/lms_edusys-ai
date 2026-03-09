@@ -1,0 +1,1115 @@
+// Prisma schema for Curriculum Management System
+// Fixed version with proper relationships
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ===========================================
+// MASTER TABLES
+// ===========================================
+
+model Tenant {
+   id          BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+   code        String   @unique @db.VarChar(64)
+   name        String   @db.VarChar(255)
+   domain      String?  @db.VarChar(255)
+   is_active   Boolean  @default(true) @db.TinyInt
+   settings    Json?    @db.Json
+   created_at  DateTime @default(now()) @db.Timestamp(0)
+   updated_at  DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+   // Relations
+   campuses         Campus[]
+   users             User[]
+   curriculum_frameworks CurriculumFramework[]
+   tags              Tag[]
+   comments          Comment[]
+   approvals         Approval[]
+   saved_views       SavedView[]
+   audit_logs        AuditLog[]
+   kct_usage_tracking KctUsageTracking[]
+   learning_outcomes_tracking LearningOutcomesTracking[]
+   settings_record   Settings?
+   assignments       Assignment[]
+   assignment_practice_sessions AssignmentPracticeSession[]
+   games             Game[]
+   roles             Role[]
+   org_units         OrgUnit[]
+   program_definitions ProgramDefinition[]
+
+   @@index([code])
+   @@index([is_active])
+   @@map("tenants")
+}
+
+model Campus {
+   id            BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+   tenant_id     BigInt   @db.UnsignedBigInt
+   code          String   @db.VarChar(64)
+   name          String   @db.VarChar(255)
+   address       String?  @db.Text
+   contact_email String?  @db.VarChar(255)
+   contact_phone String?  @db.VarChar(32)
+   is_active     Boolean  @default(true) @db.TinyInt
+   settings      Json?    @db.Json
+   created_at    DateTime @default(now()) @db.Timestamp(0)
+   updated_at    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+   // Relations
+   tenant       Tenant       @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+   users        User[]
+   curriculum_frameworks CurriculumFramework[]
+   kct_mappings KctMapping[]
+   kct_usage_tracking KctUsageTracking[]
+   user_roles   UserRoleAssignment[]
+   org_units    OrgUnit[]
+
+   @@unique([tenant_id, code])
+   @@index([tenant_id, is_active])
+   @@map("campuses")
+}
+
+model User {
+   id             BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+   tenant_id      BigInt   @db.UnsignedBigInt
+   email          String   @unique @db.VarChar(255)
+   full_name      String   @db.VarChar(255)
+   role           UserRole @default(teacher)
+   campus_id      BigInt?  @db.UnsignedBigInt
+   password_hash  String?  @db.VarChar(255)
+   is_active     Boolean  @default(true) @db.TinyInt
+   last_login_at  DateTime? @db.Timestamp(0)
+   preferences    Json?    @db.Json
+   mfa_secret     String?  @db.VarChar(255)
+   mfa_enabled    Boolean  @default(false) @db.TinyInt
+   deleted_at     DateTime? @db.Timestamp(0)
+   created_at     DateTime @default(now()) @db.Timestamp(0)
+   updated_at     DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant         @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  campus         Campus?        @relation(fields: [campus_id], references: [id], onDelete: SetNull)
+  
+  // Curriculum relations
+  curriculum_frameworks CurriculumFramework[] @relation("CurriculumFrameworkOwner")
+  curriculum_framework_versions CurriculumFrameworkVersion[] @relation("CurriculumFrameworkVersionCreatedBy")
+  course_blueprints CourseBlueprint[] @relation("CourseBlueprintCreatedBy")
+  unit_blueprints UnitBlueprint[] @relation("UnitBlueprintCreatedBy")
+  unit_resources UnitResource[] @relation("UnitResourceCreatedBy")
+  
+  // Collaboration relations
+  comments Comment[] @relation("CommentAuthor")
+  approvals_requested Approval[] @relation("ApprovalsRequestedBy")
+  approvals_assigned Approval[] @relation("ApprovalsAssignedTo")
+  approvals_decided Approval[] @relation("ApprovalsDecidedBy")
+  approvals_escalated Approval[] @relation("ApprovalsEscalatedTo")
+  saved_views SavedView[]
+  audit_logs AuditLog[]
+  tags Tag[]
+  kct_mappings KctMapping[] @relation("KctMappingCreatedBy")
+  kct_usage_tracking KctUsageTracking[]
+  
+  // RBAC relations
+  user_roles UserRoleAssignment[]
+  granted_permissions RolePermission[]
+  
+  // Assignment/Game relations
+  user_org_units UserOrgUnit[]
+  program_owners ProgramOwner[]
+  assignments_created Assignment[] @relation("AssignmentCreatedBy")
+  assignments_updated Assignment[] @relation("AssignmentUpdatedBy")
+  assignment_practice_sessions AssignmentPracticeSession[]
+  games_owned Game[] @relation("GameOwner")
+  games_created Game[] @relation("GameCreatedBy")
+  games_updated Game[] @relation("GameUpdatedBy")
+  kct_deployments_deployed KctDeployment[]
+
+  @@index([tenant_id, email])
+  @@index([role])
+  @@index([is_active])
+  @@map("users")
+}
+
+// ===========================================
+// CURRICULUM FRAMEWORK CORE
+// ===========================================
+
+model CurriculumFramework {
+  id                BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id         BigInt   @db.UnsignedBigInt
+  campus_id         BigInt?  @db.UnsignedBigInt
+  code              String   @unique @db.VarChar(64)
+  name              String   @db.VarChar(255)
+  language          String   @db.VarChar(32)
+  target_level      String?  @db.VarChar(64)
+  age_group         AgeGroup?
+  total_hours       Int      @default(0)
+  status            FrameworkStatus @default(draft)
+  owner_user_id     BigInt?  @db.UnsignedBigInt
+  latest_version_id BigInt?  @db.UnsignedBigInt
+  description       String?  @db.Text
+  learning_objectives Json?  @db.Json
+  prerequisites     Json?    @db.Json
+  assessment_strategy String? @db.Text
+  deleted_at        DateTime? @db.Timestamp(0)
+  created_by        BigInt?  @db.UnsignedBigInt
+  updated_by        BigInt?  @db.UnsignedBigInt
+  created_at        DateTime @default(now()) @db.Timestamp(0)
+  updated_at        DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant         @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  campus         Campus?        @relation(fields: [campus_id], references: [id], onDelete: SetNull)
+  owner_user     User?          @relation("CurriculumFrameworkOwner", fields: [owner_user_id], references: [id], onDelete: SetNull)
+  versions       CurriculumFrameworkVersion[]
+  tags           CurriculumFrameworkTag[]
+  kct_mappings   KctMapping[]
+  kct_usage_tracking KctUsageTracking[]
+  learning_outcomes_tracking LearningOutcomesTracking[]
+
+  @@index([tenant_id, campus_id])
+  @@index([status])
+  @@index([owner_user_id])
+  @@index([code])
+  @@index([language])
+  @@index([age_group])
+  @@index([deleted_at])
+  @@map("curriculum_frameworks")
+}
+
+model CurriculumFrameworkVersion {
+  id                BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  framework_id      BigInt   @db.UnsignedBigInt
+  version_no        String   @db.VarChar(32)
+  state             VersionState @default(draft)
+  is_frozen         Boolean  @default(false) @db.TinyInt
+  changelog         String?  @db.Text
+  review_deadline   DateTime? @db.Timestamp(0)
+  published_at      DateTime? @db.Timestamp(0)
+  archived_reason   String?  @db.Text
+  metadata          Json?    @db.Json
+  deleted_at        DateTime? @db.Timestamp(0)
+  created_by        BigInt?  @db.UnsignedBigInt
+  updated_by        BigInt?  @db.UnsignedBigInt
+  created_at        DateTime @default(now()) @db.Timestamp(0)
+  updated_at        DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  framework       CurriculumFramework @relation(fields: [framework_id], references: [id], onDelete: Cascade)
+  created_by_user User?               @relation("CurriculumFrameworkVersionCreatedBy", fields: [created_by], references: [id], onDelete: SetNull)
+  course_blueprints CourseBlueprint[]
+  approvals       Approval[]
+  kct_mappings    KctMapping[]
+  kct_usage_tracking KctUsageTracking[]
+
+  @@unique([framework_id, version_no])
+  @@index([framework_id, state])
+  @@index([state, created_at])
+  @@index([is_frozen])
+  @@index([deleted_at])
+  @@map("curriculum_framework_versions")
+}
+
+// ===========================================
+// BLUEPRINT STRUCTURE (Courses, Units, Resources)
+// ===========================================
+
+model CourseBlueprint {
+  id                BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  version_id        BigInt   @db.UnsignedBigInt
+  code              String?  @db.VarChar(64)
+  title             String   @db.VarChar(255)
+  subtitle          String?  @db.VarChar(255)
+  level             String?  @db.VarChar(64)
+  hours             Int      @default(0)
+  order_index       Int      @default(0)
+  summary           String?  @db.Text
+  learning_outcomes Json?    @db.Json
+  assessment_types  Json?    @db.Json
+  prerequisites     String?  @db.Text
+  deleted_at        DateTime? @db.Timestamp(0)
+  created_by        BigInt?  @db.UnsignedBigInt
+  updated_by        BigInt?  @db.UnsignedBigInt
+  created_at        DateTime @default(now()) @db.Timestamp(0)
+  updated_at        DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  version         CurriculumFrameworkVersion @relation(fields: [version_id], references: [id], onDelete: Cascade)
+  created_by_user User?                      @relation("CourseBlueprintCreatedBy", fields: [created_by], references: [id], onDelete: SetNull)
+  unit_blueprints UnitBlueprint[]
+
+  @@index([version_id, order_index])
+  @@index([deleted_at])
+  @@map("course_blueprints")
+}
+
+model UnitBlueprint {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  course_blueprint_id BigInt    @db.UnsignedBigInt
+  title             String      @db.VarChar(255)
+  subtitle          String?     @db.VarChar(255)
+  objectives        Json?       @db.Json
+  skills            Json?       @db.Json
+  activities        Json?       @db.Json
+  rubric            Json?       @db.Json
+  homework          Json?       @db.Json
+  hours             Int         @default(0)
+  order_index       Int         @default(0)
+  completeness_score Int        @default(0) @db.TinyInt
+  difficulty_level  DifficultyLevel @default(intermediate)
+  estimated_time    Int?        @db.UnsignedInt
+  notes             String?     @db.Text
+  ai_generated      Boolean     @default(false) @db.TinyInt
+  ai_confidence     Decimal?    @db.Decimal(3, 2)
+  deleted_at        DateTime?   @db.Timestamp(0)
+  created_by        BigInt?     @db.UnsignedBigInt
+  updated_by        BigInt?     @db.UnsignedBigInt
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+  updated_at        DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  course_blueprint CourseBlueprint @relation(fields: [course_blueprint_id], references: [id], onDelete: Cascade)
+  created_by_user  User?           @relation("UnitBlueprintCreatedBy", fields: [created_by], references: [id], onDelete: SetNull)
+  unit_resources   UnitResource[]
+  tags             UnitBlueprintTag[]
+  learning_outcomes_tracking LearningOutcomesTracking[]
+
+  @@index([course_blueprint_id, order_index])
+  @@index([completeness_score])
+  @@index([deleted_at])
+  @@map("unit_blueprints")
+}
+
+model UnitResource {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  unit_id           BigInt      @db.UnsignedBigInt
+  kind              ResourceKind
+  title             String      @db.VarChar(255)
+  description       String?     @db.Text
+  url               String?     @db.Text
+  file_path         String?     @db.Text
+  file_size         BigInt?     @db.UnsignedBigInt
+  mime_type         String?     @db.VarChar(128)
+  ocr_text          String?     @db.LongText
+  ai_tags           Json?       @db.Json
+  manual_tags       Json?       @db.Json
+  license_type      String?     @db.VarChar(64)
+  license_note      String?     @db.Text
+  accessibility_features Json?  @db.Json
+  health_status     HealthStatus @default(unknown)
+  last_health_check DateTime?   @db.Timestamp(0)
+  order_index       Int         @default(0)
+  is_required       Boolean     @default(false) @db.TinyInt
+  download_count    Int         @default(0) @db.UnsignedInt
+  deleted_at        DateTime?   @db.Timestamp(0)
+  created_by        BigInt?     @db.UnsignedBigInt
+  updated_by        BigInt?     @db.UnsignedBigInt
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+  updated_at        DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  unit             UnitBlueprint @relation(fields: [unit_id], references: [id], onDelete: Cascade)
+  created_by_user  User?         @relation("UnitResourceCreatedBy", fields: [created_by], references: [id], onDelete: SetNull)
+
+  @@index([unit_id, order_index])
+  @@index([kind])
+  @@index([health_status])
+  @@index([is_required])
+  @@index([deleted_at])
+  @@map("unit_resources")
+}
+
+// ===========================================
+// MAPPING & DEPLOYMENT
+// ===========================================
+
+model KctMapping {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  framework_id      BigInt      @db.UnsignedBigInt
+  version_id        BigInt      @db.UnsignedBigInt
+  target_type       TargetType
+  target_id         BigInt      @db.UnsignedBigInt
+  campus_id         BigInt?     @db.UnsignedBigInt
+  rollout_batch     String?     @db.VarChar(64)
+  rollout_phase     RolloutPhase @default(planned)
+  mismatch_report   Json?       @db.Json
+  risk_assessment   RiskLevel   @default(low)
+  override_reason   String?     @db.Text
+  status            MappingStatus @default(planned)
+  applied_at        DateTime?   @db.Timestamp(0)
+  rolled_back_at    DateTime?   @db.Timestamp(0)
+  rollback_reason   String?     @db.Text
+  created_by        BigInt?     @db.UnsignedBigInt
+  updated_by        BigInt?     @db.UnsignedBigInt
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+  updated_at        DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  framework         CurriculumFramework       @relation(fields: [framework_id], references: [id], onDelete: Cascade)
+  version           CurriculumFrameworkVersion @relation(fields: [version_id], references: [id], onDelete: Cascade)
+  campus            Campus?                   @relation(fields: [campus_id], references: [id], onDelete: SetNull)
+  created_by_user   User?                     @relation("KctMappingCreatedBy", fields: [created_by], references: [id], onDelete: SetNull)
+  kct_deployments   KctDeployment[]
+
+  @@index([framework_id, version_id])
+  @@index([target_type, target_id])
+  @@index([status])
+  @@index([rollout_batch, rollout_phase])
+  @@index([risk_assessment])
+  @@map("kct_mappings")
+}
+
+// ===========================================
+// TAGGING SYSTEM
+// ===========================================
+
+model Tag {
+  id            BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt   @db.UnsignedBigInt
+  name          String   @db.VarChar(64)
+  category      String?  @db.VarChar(32)
+  color         String?  @db.VarChar(16)
+  description   String?  @db.Text
+  is_system     Boolean  @default(false) @db.TinyInt
+  usage_count   Int      @default(0) @db.UnsignedInt
+  created_by    BigInt?  @db.UnsignedBigInt
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+  updated_at    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant         @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  created_by_user User?         @relation(fields: [created_by], references: [id], onDelete: SetNull)
+  curriculum_framework_tags CurriculumFrameworkTag[]
+  unit_blueprint_tags UnitBlueprintTag[]
+
+  @@unique([tenant_id, name])
+  @@index([category])
+  @@index([is_system])
+  @@map("tags")
+}
+
+model CurriculumFrameworkTag {
+  framework_id BigInt @db.UnsignedBigInt
+  tag_id       BigInt @db.UnsignedBigInt
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+
+  // Relations
+  framework CurriculumFramework @relation(fields: [framework_id], references: [id], onDelete: Cascade)
+  tag       Tag                @relation(fields: [tag_id], references: [id], onDelete: Cascade)
+
+  @@id([framework_id, tag_id])
+  @@map("curriculum_framework_tags")
+}
+
+model UnitBlueprintTag {
+  unit_id     BigInt @db.UnsignedBigInt
+  tag_id      BigInt @db.UnsignedBigInt
+  created_at  DateTime @default(now()) @db.Timestamp(0)
+
+  // Relations
+  unit UnitBlueprint @relation(fields: [unit_id], references: [id], onDelete: Cascade)
+  tag  Tag           @relation(fields: [tag_id], references: [id], onDelete: Cascade)
+
+  @@id([unit_id, tag_id])
+  @@map("unit_blueprint_tags")
+}
+
+// ===========================================
+// COLLABORATION & WORKFLOW
+// ===========================================
+
+model Comment {
+  id            BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt      @db.UnsignedBigInt
+  entity_type   String      @db.VarChar(64)
+  entity_id     BigInt      @db.UnsignedBigInt
+  author_id     BigInt?     @db.UnsignedBigInt
+  parent_id     BigInt?     @db.UnsignedBigInt
+  body          String      @db.Text
+  mentions      Json?       @db.Json
+  attachments   Json?       @db.Json
+  is_resolved   Boolean     @default(false) @db.TinyInt
+  resolved_by   BigInt?     @db.UnsignedBigInt
+  resolved_at   DateTime?   @db.Timestamp(0)
+  edited_at     DateTime?   @db.Timestamp(0)
+  deleted_at    DateTime?   @db.Timestamp(0)
+  created_at    DateTime    @default(now()) @db.Timestamp(0)
+  updated_at    DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant  @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  author         User?   @relation("CommentAuthor", fields: [author_id], references: [id], onDelete: SetNull)
+  parent         Comment? @relation("CommentReplies", fields: [parent_id], references: [id], onDelete: Cascade)
+  replies        Comment[] @relation("CommentReplies")
+
+  @@index([entity_type, entity_id])
+  @@index([author_id])
+  @@index([is_resolved])
+  @@index([deleted_at])
+  @@map("comments")
+}
+
+model Approval {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id         BigInt      @db.UnsignedBigInt
+  version_id        BigInt      @db.UnsignedBigInt
+  requested_by      BigInt?     @db.UnsignedBigInt
+  assigned_reviewer_id BigInt?  @db.UnsignedBigInt
+  status            ApprovalStatus @default(requested)
+  priority          Priority    @default(normal)
+  review_deadline   DateTime?   @db.Timestamp(0)
+  decision          String?     @db.Text
+  decision_made_by  BigInt?     @db.UnsignedBigInt
+  decision_made_at  DateTime?   @db.Timestamp(0)
+  escalation_reason String?     @db.Text
+  escalated_to      BigInt?     @db.UnsignedBigInt
+  escalated_at      DateTime?   @db.Timestamp(0)
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+  updated_at        DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant                    @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  version        CurriculumFrameworkVersion @relation(fields: [version_id], references: [id], onDelete: Cascade)
+  requested_by_user User?                  @relation("ApprovalsRequestedBy", fields: [requested_by], references: [id], onDelete: SetNull)
+  assigned_reviewer User?                  @relation("ApprovalsAssignedTo", fields: [assigned_reviewer_id], references: [id], onDelete: SetNull)
+  decision_made_by_user User?              @relation("ApprovalsDecidedBy", fields: [decision_made_by], references: [id], onDelete: SetNull)
+  escalated_to_user User?                  @relation("ApprovalsEscalatedTo", fields: [escalated_to], references: [id], onDelete: SetNull)
+
+  @@index([version_id, status])
+  @@index([assigned_reviewer_id])
+  @@index([priority])
+  @@index([review_deadline])
+  @@map("approvals")
+}
+
+// ===========================================
+// UI PERSISTENCE & ANALYTICS
+// ===========================================
+
+model SavedView {
+  id            BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt      @db.UnsignedBigInt
+  owner_id      BigInt      @db.UnsignedBigInt
+  name          String      @db.VarChar(128)
+  view_type     ViewType
+  is_shared     Boolean     @default(false) @db.TinyInt
+  is_default    Boolean     @default(false) @db.TinyInt
+  filters       Json?       @db.Json
+  columns       Json?       @db.Json
+  sort_config   Json?       @db.Json
+  layout_config Json?       @db.Json
+  usage_count   Int         @default(0) @db.UnsignedInt
+  last_used_at  DateTime?   @db.Timestamp(0)
+  created_at    DateTime    @default(now()) @db.Timestamp(0)
+  updated_at    DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant Tenant @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  owner  User   @relation(fields: [owner_id], references: [id], onDelete: Cascade)
+
+  @@index([owner_id, view_type])
+  @@index([is_shared])
+  @@index([is_default])
+  @@map("saved_views")
+}
+
+// ===========================================
+// AUDIT & COMPLIANCE
+// ===========================================
+
+model AuditLog {
+  id            BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt   @db.UnsignedBigInt
+  actor_id      BigInt?  @db.UnsignedBigInt
+  session_id    String?  @db.VarChar(128)
+  action        String   @db.VarChar(64)
+  entity_type   String   @db.VarChar(64)
+  entity_id     BigInt   @db.UnsignedBigInt
+  old_values    Json?    @db.Json
+  new_values    Json?    @db.Json
+  metadata      Json?    @db.Json
+  ip_address    String?  @db.VarChar(45)
+  user_agent    String?  @db.Text
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+
+  // Relations
+  tenant Tenant @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  actor  User?  @relation(fields: [actor_id], references: [id], onDelete: SetNull)
+
+  @@index([actor_id, action])
+  @@index([entity_type, entity_id])
+  @@index([created_at])
+  @@index([session_id])
+  @@map("audit_logs")
+}
+
+// ===========================================
+// ANALYTICS & REPORTING TABLES
+// ===========================================
+
+model KctUsageTracking {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id         BigInt      @db.UnsignedBigInt
+  framework_id      BigInt      @db.UnsignedBigInt
+  version_id        BigInt      @db.UnsignedBigInt
+  target_type       UsageTargetType
+  target_id         BigInt      @db.UnsignedBigInt
+  campus_id         BigInt?     @db.UnsignedBigInt
+  user_id           BigInt?     @db.UnsignedBigInt
+  action            UsageAction
+  duration_seconds  Int?        @db.UnsignedInt
+  completion_percentage Int?    @db.UnsignedTinyInt
+  metadata          Json?       @db.Json
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant                    @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  framework      CurriculumFramework       @relation(fields: [framework_id], references: [id], onDelete: Cascade)
+  version        CurriculumFrameworkVersion @relation(fields: [version_id], references: [id], onDelete: Cascade)
+  campus         Campus?                   @relation(fields: [campus_id], references: [id], onDelete: SetNull)
+  user           User?                     @relation(fields: [user_id], references: [id], onDelete: SetNull)
+
+  @@index([framework_id, created_at])
+  @@index([user_id, action])
+  @@index([target_type, target_id])
+  @@map("kct_usage_tracking")
+}
+
+model LearningOutcomesTracking {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id         BigInt      @db.UnsignedBigInt
+  framework_id      BigInt      @db.UnsignedBigInt
+  class_id          BigInt      @db.UnsignedBigInt
+  student_id        String      @db.VarChar(255)
+  unit_id           BigInt?     @db.UnsignedBigInt
+  assessment_type   String      @db.VarChar(64)
+  score             Decimal?    @db.Decimal(5, 2)
+  max_score         Decimal     @default(100.00) @db.Decimal(5, 2)
+  grade             String?     @db.VarChar(4)
+  skills_assessed   Json?       @db.Json
+  feedback          String?     @db.Text
+  completed_at      DateTime?   @db.Timestamp(0)
+  metadata          Json?       @db.Json
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+
+  // Relations
+  tenant         Tenant             @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  framework      CurriculumFramework @relation(fields: [framework_id], references: [id], onDelete: Cascade)
+  unit           UnitBlueprint?     @relation(fields: [unit_id], references: [id])
+
+  @@index([class_id, student_id])
+  @@index([unit_id])
+  @@index([assessment_type])
+  @@index([completed_at])
+  @@map("learning_outcomes_tracking")
+}
+
+// ===========================================
+// SETTINGS & CONFIGURATION
+// ===========================================
+
+model Settings {
+  tenant_id                    BigInt   @id @db.UnsignedBigInt
+  hours_tolerance              Decimal  @default(0.5) @db.Decimal(4, 2)
+  draft_export_watermark       Boolean  @default(true) @db.TinyInt
+  required_skills_by_level     Json?    @db.Json
+  cefr_minima                  Json?    @db.Json
+  max_draft_age_days           Int      @default(30)
+  require_qr_for_published_exports Boolean @default(true) @db.TinyInt
+  allow_override_with_justification Boolean @default(true) @db.TinyInt
+  default_campus_branding      Json?    @db.Json
+  ai_generation_enabled        Boolean  @default(true) @db.TinyInt
+  auto_health_checks_enabled   Boolean  @default(true) @db.TinyInt
+  webhook_endpoints            Json?    @db.Json
+  created_at                   DateTime @default(now()) @db.Timestamp(0)
+  updated_at                   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant Tenant @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+
+  @@map("settings")
+}
+
+// ===========================================
+// ASSIGNMENTS & GAMES
+// ===========================================
+
+model Assignment {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id         BigInt      @db.UnsignedBigInt
+  title             String      @db.VarChar(255)
+  level             String?     @db.VarChar(32)
+  skill             String?     @db.VarChar(64)
+  duration_minutes  Int         @default(0)
+  type              String?     @db.VarChar(64)
+  description       String?     @db.Text
+  tags              Json?       @db.Json
+  difficulty        AssignmentDifficulty?
+  visibility        AssignmentVisibility @default(private)
+  objectives        Json?       @db.Json
+  rubric            Json?       @db.Json
+  attachments       Json?       @db.Json
+  content_type      AssignmentContentType?
+  content           Json?       @db.Json
+  version_number    Int         @default(1)
+  parent_id         BigInt?     @db.UnsignedBigInt
+  is_latest         Boolean     @default(true) @db.TinyInt
+  version_notes     String?     @db.Text
+  created_by        BigInt      @db.UnsignedBigInt
+  updated_by        BigInt      @db.UnsignedBigInt
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
+  deleted_at        DateTime?   @db.Timestamp(0)
+
+  // Relations
+  tenant            Tenant      @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  created_by_user   User        @relation("AssignmentCreatedBy", fields: [created_by], references: [id])
+  updated_by_user   User        @relation("AssignmentUpdatedBy", fields: [updated_by], references: [id])
+  practice_sessions AssignmentPracticeSession[]
+
+  @@index([tenant_id, level])
+  @@index([tenant_id, skill])
+  @@index([title])
+  @@map("assignments")
+}
+
+model AssignmentPracticeSession {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id         BigInt      @db.UnsignedBigInt
+  assignment_id     BigInt      @db.UnsignedBigInt
+  user_id           BigInt      @db.UnsignedBigInt
+  status            SessionStatus @default(in_progress)
+  started_at        DateTime    @default(now())
+  completed_at      DateTime?   @db.Timestamp(0)
+  time_spent_seconds Int        @default(0)
+  answers           Json?       @db.Json
+  score             Decimal?    @db.Decimal(5, 2)
+  feedback          String?     @db.Text
+  metadata          Json?       @db.Json
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
+
+  // Relations
+  tenant            Tenant      @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  assignment        Assignment  @relation(fields: [assignment_id], references: [id], onDelete: Cascade)
+  user              User        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([tenant_id, user_id])
+  @@index([assignment_id])
+  @@index([status])
+  @@index([started_at])
+  @@map("assignment_practice_sessions")
+}
+
+model Game {
+   id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+   tenant_id         BigInt      @db.UnsignedBigInt
+   title             String      @db.VarChar(255)
+   type              String?     @db.VarChar(64)
+   level             String?     @db.VarChar(32)
+   skill             String?     @db.VarChar(64)
+   duration_minutes  Int         @default(0)
+   players           String?     @db.VarChar(64)
+   description       String?     @db.Text
+   plays_count       Int         @default(0)
+   rating            Decimal     @default(0.0) @db.Decimal(3, 1)
+   api_integration   String?     @db.VarChar(128)
+   tags              Json?       @db.Json
+   difficulty        String?     @db.VarChar(16)
+   visibility        GameVisibility @default(public)
+   owner_user_id     BigInt?     @db.UnsignedBigInt
+   objectives        Json?       @db.Json
+   rubric            Json?       @db.Json
+   attachments       Json?       @db.Json
+   game_type         GameType?
+   configuration     Json?       @db.Json
+   external_api_config Json?     @db.Json
+   leaderboard_enabled Boolean   @default(true) @db.TinyInt
+   version_number    Int         @default(1)
+   parent_id         BigInt?     @db.UnsignedBigInt
+   is_latest         Boolean     @default(true) @db.TinyInt
+   version_notes     String?     @db.Text
+   created_by        BigInt      @db.UnsignedBigInt
+   updated_by        BigInt      @db.UnsignedBigInt
+   created_at        DateTime    @default(now())
+   updated_at        DateTime    @updatedAt
+   deleted_at        DateTime?   @db.Timestamp(0)
+
+   // Relations
+   tenant            Tenant      @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+   owner_user        User?       @relation("GameOwner", fields: [owner_user_id], references: [id], onDelete: SetNull)
+   created_by_user   User        @relation("GameCreatedBy", fields: [created_by], references: [id])
+   updated_by_user   User        @relation("GameUpdatedBy", fields: [updated_by], references: [id])
+
+   @@index([tenant_id, type])
+   @@index([tenant_id, skill])
+   @@index([tenant_id, level])
+   @@index([visibility])
+   @@index([owner_user_id])
+   @@index([deleted_at])
+   @@map("games")
+}
+
+// ===========================================
+// RBAC TABLES
+// ===========================================
+
+model Role {
+  id            BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt?  @db.UnsignedBigInt
+  code          String   @db.VarChar(64)
+  name          String   @db.VarChar(128)
+  description   String?  @db.Text
+  is_system     Boolean  @default(false) @db.TinyInt
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+  updated_at    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant        Tenant?              @relation(fields: [tenant_id], references: [id], onDelete: SetNull)
+  permissions   RolePermission[]
+  user_roles    UserRoleAssignment[]
+
+  @@unique([tenant_id, code])
+  @@index([tenant_id])
+  @@map("roles")
+}
+
+model Permission {
+  id          BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  code        String   @unique @db.VarChar(128)
+  name        String   @db.VarChar(128)
+  description String?  @db.Text
+  created_at  DateTime @default(now()) @db.Timestamp(0)
+  updated_at  DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  role_id       BigInt @db.UnsignedBigInt
+  permission_id BigInt @db.UnsignedBigInt
+  granted_by    BigInt? @db.UnsignedBigInt
+  granted_at    DateTime @default(now()) @db.Timestamp(0)
+
+  // Relations
+  role       Role       @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permission_id], references: [id], onDelete: Cascade)
+  granted_by_user User? @relation(fields: [granted_by], references: [id], onDelete: SetNull)
+
+  @@id([role_id, permission_id])
+  @@map("role_permissions")
+}
+
+model UserRoleAssignment {
+  id          BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  user_id     BigInt   @db.UnsignedBigInt
+  role_id     BigInt   @db.UnsignedBigInt
+  campus_id   BigInt?  @db.UnsignedBigInt
+  active      Boolean  @default(true) @db.TinyInt
+  assigned_at DateTime @default(now()) @db.Timestamp(0)
+
+  // Relations
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  role   Role   @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  campus Campus? @relation(fields: [campus_id], references: [id], onDelete: SetNull)
+
+  @@unique([user_id, role_id, campus_id])
+  @@index([user_id])
+  @@index([role_id])
+  @@map("user_roles")
+}
+
+model OrgUnit {
+  id            BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt      @db.UnsignedBigInt
+  parent_id     BigInt?     @db.UnsignedBigInt
+  campus_id     BigInt?     @db.UnsignedBigInt
+  code          String?     @db.VarChar(64)
+  name          String      @db.VarChar(255)
+  kind          OrgUnitKind @default(other)
+  description   String?     @db.Text
+  created_at    DateTime    @default(now()) @db.Timestamp(0)
+  updated_at    DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant        Tenant      @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  parent        OrgUnit?    @relation("OrgUnitHierarchy", fields: [parent_id], references: [id], onDelete: SetNull)
+  children      OrgUnit[]   @relation("OrgUnitHierarchy")
+  campus        Campus?     @relation(fields: [campus_id], references: [id], onDelete: SetNull)
+  user_org_units UserOrgUnit[]
+
+  @@unique([tenant_id, code])
+  @@index([tenant_id])
+  @@map("org_units")
+}
+
+model UserOrgUnit {
+  user_id    BigInt @db.UnsignedBigInt
+  org_unit_id BigInt @db.UnsignedBigInt
+  role_in_unit String? @db.VarChar(64)
+  assigned_at DateTime @default(now()) @db.Timestamp(0)
+
+  // Relations
+  user     User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  org_unit OrgUnit @relation(fields: [org_unit_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, org_unit_id])
+  @@index([org_unit_id])
+  @@map("user_org_units")
+}
+
+model ProgramDefinition {
+  id            BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  tenant_id     BigInt   @db.UnsignedBigInt
+  code          String   @db.VarChar(64)
+  name          String   @db.VarChar(255)
+  language      String?  @db.VarChar(32)
+  description   String?  @db.Text
+  is_active   Boolean  @default(true) @db.TinyInt
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+  updated_at    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  tenant        Tenant         @relation(fields: [tenant_id], references: [id], onDelete: Cascade)
+  program_owners ProgramOwner[]
+
+  @@unique([tenant_id, code])
+  @@index([tenant_id])
+  @@map("program_definitions")
+}
+
+model ProgramOwner {
+  program_id BigInt @db.UnsignedBigInt
+  user_id    BigInt @db.UnsignedBigInt
+
+  // Relations
+  program ProgramDefinition @relation(fields: [program_id], references: [id], onDelete: Cascade)
+  user    User              @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([program_id, user_id])
+  @@map("program_owners")
+}
+
+// ===========================================
+// KCT DEPLOYMENT
+// ===========================================
+
+model KctDeployment {
+  id                BigInt      @id @default(autoincrement()) @db.UnsignedBigInt
+  mapping_id        BigInt      @db.UnsignedBigInt
+  deployment_status DeploymentStatus @default(planned)
+  deployed_at       DateTime?   @db.Timestamp(0)
+  deployed_by_id    BigInt?     @db.UnsignedBigInt
+  rollback_at       DateTime?   @db.Timestamp(0)
+  rollback_reason   String?     @db.Text
+  metadata          Json?       @db.Json
+  created_at        DateTime    @default(now()) @db.Timestamp(0)
+  updated_at        DateTime    @default(now()) @updatedAt @db.Timestamp(0)
+
+  // Relations
+  mapping     KctMapping @relation(fields: [mapping_id], references: [id])
+  deployed_by User?      @relation(fields: [deployed_by_id], references: [id], onDelete: SetNull)
+
+  @@map("kct_deployments")
+}
+
+// ===========================================
+// ENUMS
+// ===========================================
+
+enum UserRole {
+  super_admin
+  admin
+  bgh
+  program_owner
+  curriculum_designer
+  teacher
+  qa
+  viewer
+}
+
+enum AgeGroup {
+  kids
+  teens
+  adults
+  all
+}
+
+enum FrameworkStatus {
+  draft
+  pending_review
+  approved
+  published
+  archived
+}
+
+enum VersionState {
+  draft
+  pending_review
+  approved
+  published
+  archived
+}
+
+enum DifficultyLevel {
+  beginner
+  intermediate
+  advanced
+}
+
+enum ResourceKind {
+  pdf
+  slide
+  video
+  audio
+  link
+  doc
+  image
+  worksheet
+  interactive
+}
+
+enum HealthStatus {
+  healthy
+  broken
+  expired
+  restricted
+  unknown
+}
+
+enum TargetType {
+  course_template
+  class_instance
+}
+
+enum RolloutPhase {
+  planned
+  pilot
+  phased
+  full
+}
+
+enum RiskLevel {
+  low
+  medium
+  high
+  critical
+}
+
+enum MappingStatus {
+  planned
+  validated
+  applied
+  failed
+  rolled_back
+}
+
+enum ApprovalStatus {
+  requested
+  in_review
+  approved
+  rejected
+  escalated
+}
+
+enum Priority {
+  low
+  normal
+  high
+  urgent
+}
+
+enum ViewType {
+  framework_list
+  unit_editor
+  reports
+}
+
+enum UsageTargetType {
+  course
+  class
+}
+
+enum UsageAction {
+  view
+  edit
+  export
+  apply
+  teach
+}
+
+enum AssignmentDifficulty {
+  easy
+  medium
+  hard
+}
+
+enum AssignmentVisibility {
+  public
+  private
+  campus
+  tenant
+}
+
+enum GameVisibility {
+  public
+  private
+}
+
+enum GameType {
+  flashcard
+  kahoot_style
+  crossword
+  word_search
+  role_play
+  listening_challenge
+  vocabulary_quiz
+  grammar_battle
+  custom
+}
+
+enum AssignmentContentType {
+  mcq
+  true_false
+  matching
+  essay
+  audio
+  speaking
+  reading
+  project
+  worksheet
+  presentation
+  quiz
+  diagnostic
+}
+
+enum SessionStatus {
+  in_progress
+  completed
+  abandoned
+}
+
+enum OrgUnitKind {
+  faculty
+  department
+  program
+  team
+  other
+}
+
+enum DeploymentStatus {
+  planned
+  deploying
+  deployed
+  failed
+  rolled_back
+}

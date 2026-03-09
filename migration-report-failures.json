@@ -1,0 +1,275 @@
+{
+  "files": [
+    {
+      "filename": "060-assessment-assignments-gradebook.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_submissions_ibfk_4' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 11 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "070-qa-and-surveys.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'rubrics'",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 6 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "100-class-assignments-and-policies.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'class_assignments_ibfk_2' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 3 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "130-notifications.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'user_notifications_ibfk_5' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 2 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "160-import-export.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'row_number INT UNSIGNED NULL,\n  status ENUM('success','warning','error') NOT NUL' at line 4",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 1 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "180-assignment-question-bank.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_questions_ibfk_1' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 3 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "190-games-gamification.sql",
+      "status": "failure",
+      "error": "Referencing column 'game_id' and referenced column 'id' in foreign key constraint 'game_sessions_ibfk_2' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 7 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "200-assignments-games-pivots.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_attachments_ibfk_1' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 6 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "210-class-game-assignments.sql",
+      "status": "failure",
+      "error": "Referencing column 'game_id' and referenced column 'id' in foreign key constraint 'class_game_assignments_ibfk_2' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 3 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "220-collections-and-sharing.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'assignment_collection_items_ibfk_2' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 5 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "230-external-providers-and-standards.sql",
+      "status": "failure",
+      "error": "Referencing column 'game_id' and referenced column 'id' in foreign key constraint 'external_game_mappings_ibfk_1' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 3 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "300-exam-bank.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'assignment_questions'",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 3 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "320-exam-attempts-and-logs.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'exam_items'",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 4 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "340-exam-grading.sql",
+      "status": "failure",
+      "error": "Failed to open the referenced table 'exam_attempt_items'",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 4 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "520-session-content-links.sql",
+      "status": "failure",
+      "error": "Referencing column 'assignment_id' and referenced column 'id' in foreign key constraint 'session_assignments_ibfk_2' are incompatible.",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 2 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "540-staff-shifts-and-attendance.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'valid_from,'1000-01-01'), IFNULL(valid_to,'9999-12-31')),\n  FOREIGN KEY (staff_s' at line 7",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 6 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "600-points-economy-core.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'class_id, 0)),\n  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON' at line 9",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 5 bߦ�ng"
+        }
+      ]
+    },
+    {
+      "filename": "620-streaks-and-quests.sql",
+      "status": "failure",
+      "error": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'class_id,0)),\n  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON ' at line 13",
+      "fk_index_checks": [
+        {
+          "type": "FK",
+          "result": "OK"
+        },
+        {
+          "type": "INDEX",
+          "result": "C+� l�+�i khi ki�+�m tra 8 bߦ�ng"
+        }
+      ]
+    }
+  ],
+  "summary": "Có lỗi ở 060-assessment-assignments-gradebook.sql, 070-qa-and-surveys.sql, 100-class-assignments-and-policies.sql, 130-notifications.sql, 160-import-export.sql, 180-assignment-question-bank.sql, 190-games-gamification.sql, 200-assignments-games-pivots.sql, 210-class-game-assignments.sql, 220-collections-and-sharing.sql, 230-external-providers-and-standards.sql, 300-exam-bank.sql, 320-exam-attempts-and-logs.sql, 340-exam-grading.sql, 520-session-content-links.sql, 540-staff-shifts-and-attendance.sql, 600-points-economy-core.sql, 620-streaks-and-quests.sql"
+}

@@ -1,0 +1,14 @@
+
+# Database Backup Note
+# Generated: 2025-10-12T20:06:05.310Z
+# Database: edusys_ai_2025_v1
+# Host: 45.32.100.86
+
+# To create a manual backup, run:
+# mysqldump -h 45.32.100.86 -P 3306 -u edu -p edusys_ai_2025_v1 > backup.sql
+
+# Current table count before expansion: 31 tables
+# Target table count after expansion: 248 tables
+
+# IMPORTANT: This expansion will add 217 new tables to your database.
+# Please ensure you have a backup before proceeding.
