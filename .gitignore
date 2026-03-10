@@ -39,6 +39,16 @@ backend/.env.development.local
 backend/.env.test.local
 backend/.env.production.local
 
-
+# Kiro generated documentation files
+FIX-*.md
+*-COMPLETE.md
+*-SUMMARY.md
+*-README.md
+*-REPORT.md
+*-STATUS.md
+DEBUG-*.md
+TEST-*.md
+ARCHITECTURE-*.md
+IMPLEMENTATION-*.md
 
 # *.sql

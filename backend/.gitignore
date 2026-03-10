@@ -3,3 +3,15 @@ node_modules
 .env
 
 /src/generated/prisma
+
+# Kiro generated documentation files
+FIX-*.md
+*-COMPLETE.md
+*-SUMMARY.md
+*-README.md
+*-REPORT.md
+*-STATUS.md
+DEBUG-*.md
+TEST-*.md
+ARCHITECTURE-*.md
+IMPLEMENTATION-*.md

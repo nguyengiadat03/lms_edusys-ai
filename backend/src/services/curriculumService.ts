@@ -1,5 +1,5 @@
-import prisma from '../config/prisma';
-import { createError } from '../middleware/errorHandler';
+import prisma from "../config/prisma";
+import { createError } from "../middleware/errorHandler";
 
 export interface CurriculumFilters {
   status?: string[];
@@ -77,7 +77,7 @@ export class CurriculumService {
       tag,
       q,
       page = 1,
-      page_size = 20
+      page_size = 20,
     } = filters;
 
     const skip = (page - 1) * page_size;
@@ -85,7 +85,7 @@ export class CurriculumService {
     // Build where clause
     const where: any = {
       tenant_id: tenantId,
-      deleted_at: null
+      deleted_at: null,
     };
 
     // Status filter
@@ -105,7 +105,7 @@ export class CurriculumService {
       where.OR = [
         { name: { contains: q } },
         { code: { contains: q } },
-        { description: { contains: q } }
+        { description: { contains: q } },
       ];
     }
 
@@ -113,23 +113,25 @@ export class CurriculumService {
     const include: any = {
       users: {
         select: {
-          full_name: true
-        }
-      },
-      curriculum_framework_tags: tag ? {
-        where: {
-          tags: {
-            name: tag
-          }
+          full_name: true,
         },
-        include: {
-          tags: true
-        }
-      } : {
-        include: {
-          tags: true
-        }
-      }
+      },
+      curriculum_framework_tags: tag
+        ? {
+            where: {
+              tags: {
+                name: tag,
+              },
+            },
+            include: {
+              tags: true,
+            },
+          }
+        : {
+            include: {
+              tags: true,
+            },
+          },
     };
 
     // If filtering by tag, we need to ensure only frameworks with that tag are returned
@@ -137,9 +139,9 @@ export class CurriculumService {
       where.curriculum_framework_tags = {
         some: {
           tags: {
-            name: tag
-          }
-        }
+            name: tag,
+          },
+        },
       };
     }
 
@@ -148,11 +150,11 @@ export class CurriculumService {
         prisma.curriculum_frameworks.findMany({
           where,
           include,
-          orderBy: { updated_at: 'desc' },
+          orderBy: { updated_at: "desc" },
           skip,
-          take: page_size
+          take: page_size,
         }),
-        prisma.curriculum_frameworks.count({ where })
+        prisma.curriculum_frameworks.count({ where }),
       ]);
 
       // Transform results to match expected format
@@ -174,7 +176,9 @@ export class CurriculumService {
         created_at: framework.created_at,
         updated_at: framework.updated_at,
         owner_name: framework.users?.full_name || null,
-        tags: framework.curriculum_framework_tags?.map((t: any) => t.tags.name) || []
+        tags:
+          framework.curriculum_framework_tags?.map((t: any) => t.tags.name) ||
+          [],
       }));
 
       return {
@@ -183,13 +187,16 @@ export class CurriculumService {
           page,
           page_size,
           total,
-          total_pages: Math.ceil(total / page_size)
-        }
+          total_pages: Math.ceil(total / page_size),
+        },
       };
-
     } catch (error: any) {
-      console.error('Error fetching curriculum frameworks:', error);
-      throw createError('Failed to fetch curriculum frameworks', 'DATABASE_ERROR', 500);
+      console.error("Error fetching curriculum frameworks:", error);
+      throw createError(
+        "Failed to fetch curriculum frameworks",
+        "DATABASE_ERROR",
+        500,
+      );
     }
   }
 
@@ -199,33 +206,33 @@ export class CurriculumService {
         where: {
           id: BigInt(id),
           tenant_id: tenantId,
-          deleted_at: null
+          deleted_at: null,
         },
         include: {
           users: {
             select: {
-              full_name: true
-            }
+              full_name: true,
+            },
           },
           curriculum_framework_tags: {
             include: {
-              tags: true
-            }
+              tags: true,
+            },
           },
           curriculum_framework_versions: {
             where: {
-              deleted_at: null
+              deleted_at: null,
             },
             orderBy: {
-              created_at: 'desc'
+              created_at: "desc",
             },
-            take: 1
-          }
-        }
+            take: 1,
+          },
+        },
       });
 
       if (!framework) {
-        throw createError('Curriculum framework not found', 'NOT_FOUND', 404);
+        throw createError("Curriculum framework not found", "NOT_FOUND", 404);
       }
 
       return {
@@ -236,6 +243,11 @@ export class CurriculumService {
         target_level: framework.target_level,
         age_group: framework.age_group,
         total_hours: framework.total_hours,
+        // Add missing fields that frontend expects (with default values)
+        total_sessions: null, // Not in database yet
+        session_duration_hours: null, // Not in database yet
+        learning_method: null, // Not in database yet
+        learning_format: null, // Not in database yet
         status: framework.status,
         owner_user_id: framework.owner_user_id?.toString(),
         latest_version_id: framework.latest_version_id?.toString(),
@@ -246,18 +258,27 @@ export class CurriculumService {
         created_at: framework.created_at,
         updated_at: framework.updated_at,
         owner_name: framework.users?.full_name || null,
-        tags: framework.curriculum_framework_tags?.map((t: any) => t.tags.name) || [],
-        latest_version: framework.curriculum_framework_versions[0] || null
+        tags:
+          framework.curriculum_framework_tags?.map((t: any) => t.tags.name) ||
+          [],
+        latest_version: framework.curriculum_framework_versions[0] || null,
       };
-
     } catch (error: any) {
-      if (error.code === 'NOT_FOUND') throw error;
-      console.error('Error fetching curriculum framework:', error);
-      throw createError('Failed to fetch curriculum framework', 'DATABASE_ERROR', 500);
+      if (error.code === "NOT_FOUND") throw error;
+      console.error("Error fetching curriculum framework:", error);
+      throw createError(
+        "Failed to fetch curriculum framework",
+        "DATABASE_ERROR",
+        500,
+      );
     }
   }
 
-  async create(data: CreateCurriculumRequest, userId: bigint, tenantId: bigint) {
+  async create(
+    data: CreateCurriculumRequest,
+    userId: bigint,
+    tenantId: bigint,
+  ) {
     const { tags, ...frameworkData } = data;
 
     try {
@@ -266,12 +287,16 @@ export class CurriculumService {
         where: {
           code: data.code,
           tenant_id: tenantId,
-          deleted_at: null
-        }
+          deleted_at: null,
+        },
       });
 
       if (existingFramework) {
-        throw createError('Framework code already exists', 'DUPLICATE_CODE', 409);
+        throw createError(
+          "Framework code already exists",
+          "DUPLICATE_CODE",
+          409,
+        );
       }
 
       const framework = await prisma.curriculum_frameworks.create({
@@ -284,15 +309,15 @@ export class CurriculumService {
           target_level: data.target_level,
           age_group: data.age_group as any,
           total_hours: 0, // Default value
-          status: 'draft',
+          status: "draft",
           owner_user_id: userId,
           description: data.description,
           learning_objectives: data.learning_objectives,
           prerequisites: data.prerequisites,
           assessment_strategy: data.assessment_strategy,
           created_by: userId,
-          updated_by: userId
-        }
+          updated_by: userId,
+        },
       });
 
       // Add tags if provided
@@ -302,8 +327,8 @@ export class CurriculumService {
           let tag = await prisma.tags.findFirst({
             where: {
               tenant_id: tenantId,
-              name: tagName
-            }
+              name: tagName,
+            },
           });
 
           if (!tag) {
@@ -311,8 +336,8 @@ export class CurriculumService {
               data: {
                 tenant_id: tenantId,
                 name: tagName,
-                created_by: userId
-              }
+                created_by: userId,
+              },
             });
           }
 
@@ -320,22 +345,30 @@ export class CurriculumService {
           await prisma.curriculum_framework_tags.create({
             data: {
               framework_id: framework.id,
-              tag_id: tag.id
-            }
+              tag_id: tag.id,
+            },
           });
         }
       }
 
       return framework;
-
     } catch (error: any) {
-      if (error.code === 'DUPLICATE_CODE') throw error;
-      console.error('Error creating curriculum framework:', error);
-      throw createError('Failed to create curriculum framework', 'DATABASE_ERROR', 500);
+      if (error.code === "DUPLICATE_CODE") throw error;
+      console.error("Error creating curriculum framework:", error);
+      throw createError(
+        "Failed to create curriculum framework",
+        "DATABASE_ERROR",
+        500,
+      );
     }
   }
 
-  async update(id: string, data: UpdateCurriculumRequest, userId: bigint, tenantId: bigint) {
+  async update(
+    id: string,
+    data: UpdateCurriculumRequest,
+    userId: bigint,
+    tenantId: bigint,
+  ) {
     const { tags, ...updateData } = data;
 
     try {
@@ -344,12 +377,12 @@ export class CurriculumService {
         where: {
           id: BigInt(id),
           tenant_id: tenantId,
-          deleted_at: null
-        }
+          deleted_at: null,
+        },
       });
 
       if (!existingFramework) {
-        throw createError('Curriculum framework not found', 'NOT_FOUND', 404);
+        throw createError("Curriculum framework not found", "NOT_FOUND", 404);
       }
 
       // Update framework
@@ -361,15 +394,15 @@ export class CurriculumService {
           age_group: data.age_group as any,
           status: data.status as any,
           updated_by: userId,
-          updated_at: new Date()
-        }
+          updated_at: new Date(),
+        },
       });
 
       // Update tags if provided
       if (tags !== undefined) {
         // Remove existing tags
         await prisma.curriculum_framework_tags.deleteMany({
-          where: { framework_id: BigInt(id) }
+          where: { framework_id: BigInt(id) },
         });
 
         // Add new tags
@@ -379,8 +412,8 @@ export class CurriculumService {
             let tag = await prisma.tags.findFirst({
               where: {
                 tenant_id: tenantId,
-                name: tagName
-              }
+                name: tagName,
+              },
             });
 
             if (!tag) {
@@ -388,8 +421,8 @@ export class CurriculumService {
                 data: {
                   tenant_id: tenantId,
                   name: tagName,
-                  created_by: userId
-                }
+                  created_by: userId,
+                },
               });
             }
 
@@ -397,19 +430,22 @@ export class CurriculumService {
             await prisma.curriculum_framework_tags.create({
               data: {
                 framework_id: BigInt(id),
-                tag_id: tag.id
-              }
+                tag_id: tag.id,
+              },
             });
           }
         }
       }
 
       return framework;
-
     } catch (error: any) {
-      if (error.code === 'NOT_FOUND') throw error;
-      console.error('Error updating curriculum framework:', error);
-      throw createError('Failed to update curriculum framework', 'DATABASE_ERROR', 500);
+      if (error.code === "NOT_FOUND") throw error;
+      console.error("Error updating curriculum framework:", error);
+      throw createError(
+        "Failed to update curriculum framework",
+        "DATABASE_ERROR",
+        500,
+      );
     }
   }
 
@@ -420,12 +456,12 @@ export class CurriculumService {
         where: {
           id: BigInt(id),
           tenant_id: tenantId,
-          deleted_at: null
-        }
+          deleted_at: null,
+        },
       });
 
       if (!existingFramework) {
-        throw createError('Curriculum framework not found', 'NOT_FOUND', 404);
+        throw createError("Curriculum framework not found", "NOT_FOUND", 404);
       }
 
       // Soft delete
@@ -433,14 +469,17 @@ export class CurriculumService {
         where: { id: BigInt(id) },
         data: {
           deleted_at: new Date(),
-          updated_by: userId
-        }
+          updated_by: userId,
+        },
       });
-
     } catch (error: any) {
-      if (error.code === 'NOT_FOUND') throw error;
-      console.error('Error deleting curriculum framework:', error);
-      throw createError('Failed to delete curriculum framework', 'DATABASE_ERROR', 500);
+      if (error.code === "NOT_FOUND") throw error;
+      console.error("Error deleting curriculum framework:", error);
+      throw createError(
+        "Failed to delete curriculum framework",
+        "DATABASE_ERROR",
+        500,
+      );
     }
   }
 }

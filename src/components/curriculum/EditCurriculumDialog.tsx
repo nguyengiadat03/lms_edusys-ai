@@ -35,13 +35,30 @@ import * as z from "zod";
 import { Pencil, Loader2, Plus, X, Target } from "lucide-react";
 
 const editSchema = z.object({
-  name: z.string().min(1, "Tên KCT là bắt buộc").max(255, "Tên KCT tối đa 255 ký tự"),
+  name: z
+    .string()
+    .min(1, "Tên KCT là bắt buộc")
+    .max(255, "Tên KCT tối đa 255 ký tự"),
   target_level: z.string().optional(),
   age_group: z.enum(["kids", "teens", "adults", "all"]).optional(),
-  total_sessions: z.coerce.number().min(1, "Số buổi học tối thiểu 1").max(1000, "Số buổi học tối đa 1000").optional(),
-  session_duration_hours: z.coerce.number().min(0.5, "Thời gian học tối thiểu 0.5h").max(20, "Thời gian học tối đa 20h").optional(),
-  learning_method: z.string().max(128, "Cách thức học tối đa 128 ký tự").optional(),
-  learning_format: z.string().max(128, "Hình thức học tối đa 128 ký tự").optional(),
+  total_sessions: z.coerce
+    .number()
+    .min(1, "Số buổi học tối thiểu 1")
+    .max(1000, "Số buổi học tối đa 1000")
+    .optional(),
+  session_duration_hours: z.coerce
+    .number()
+    .min(0.5, "Thời gian học tối thiểu 0.5h")
+    .max(20, "Thời gian học tối đa 20h")
+    .optional(),
+  learning_method: z
+    .string()
+    .max(128, "Cách thức học tối đa 128 ký tự")
+    .optional(),
+  learning_format: z
+    .string()
+    .max(128, "Hình thức học tối đa 128 ký tự")
+    .optional(),
   description: z.string().max(2000, "Mô tả tối đa 2000 ký tự").optional(),
   learning_objectives: z.array(z.string()).optional().default([]),
   tags: z.array(z.string()).optional().default([]),
@@ -50,24 +67,24 @@ const editSchema = z.object({
 // Helper functions for display
 const getLanguageDisplay = (language: string) => {
   const languageMap: { [key: string]: string } = {
-    'en': 'Tiếng Anh',
-    'jp': 'Tiếng Nhật',
-    'vi': 'Tiếng Việt',
-    'zh': 'Tiếng Trung',
-    'ko': 'Tiếng Hàn',
-    'fr': 'Tiếng Pháp',
-    'de': 'Tiếng Đức',
-    'es': 'Tiếng Tây Ban Nha',
+    en: "Tiếng Anh",
+    jp: "Tiếng Nhật",
+    vi: "Tiếng Việt",
+    zh: "Tiếng Trung",
+    ko: "Tiếng Hàn",
+    fr: "Tiếng Pháp",
+    de: "Tiếng Đức",
+    es: "Tiếng Tây Ban Nha",
   };
   return languageMap[language] || language;
 };
 
 const getStatusDisplay = (status: string) => {
   const statusMap: { [key: string]: string } = {
-    'draft': 'Bản nháp',
-    'approved': 'Đã phê duyệt',
-    'published': 'Đã xuất bản',
-    'archived': 'Lưu trữ',
+    draft: "Bản nháp",
+    approved: "Đã phê duyệt",
+    published: "Đã xuất bản",
+    archived: "Lưu trữ",
   };
   return statusMap[status] || status;
 };
@@ -76,11 +93,11 @@ const getStatusDisplay = (status: string) => {
 const safeParseLearningObjectives = (data: any): string[] => {
   if (!data) return [];
   if (Array.isArray(data)) return data;
-  if (typeof data === 'string') {
+  if (typeof data === "string") {
     try {
       return JSON.parse(data);
     } catch (error) {
-      console.warn('Failed to parse learning objectives JSON:', error);
+      console.warn("Failed to parse learning objectives JSON:", error);
       return [];
     }
   }
@@ -90,11 +107,11 @@ const safeParseLearningObjectives = (data: any): string[] => {
 const safeParseTags = (data: any): string[] => {
   if (!data) return [];
   if (Array.isArray(data)) return data;
-  if (typeof data === 'string') {
+  if (typeof data === "string") {
     try {
       return JSON.parse(data);
     } catch (error) {
-      console.warn('Failed to parse tags JSON:', error);
+      console.warn("Failed to parse tags JSON:", error);
       return [];
     }
   }
@@ -121,25 +138,66 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
   });
 
   // Fetch curriculum details when dialog opens
-  const { data: curriculum, isLoading } = useQuery({
-    queryKey: ['curriculum', curriculumId],
-    queryFn: () => curriculumId ? curriculumService.getCurriculum(parseInt(curriculumId)) : null,
-    enabled: open && !!curriculumId,
+  const {
+    data: curriculum,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["curriculum", curriculumId],
+    queryFn: () => {
+      if (!curriculumId) return null;
+      const id = parseInt(curriculumId);
+      if (isNaN(id)) {
+        console.error("Invalid curriculum ID:", curriculumId);
+        return null;
+      }
+      console.log("🔍 EditCurriculumDialog fetching curriculum with ID:", id);
+      return curriculumService.getCurriculum(id);
+    },
+    enabled: open && !!curriculumId && !isNaN(parseInt(curriculumId || "")),
   });
+
+  // Debug log for query state
+  useEffect(() => {
+    if (open && curriculumId) {
+      console.log("🔍 EditCurriculumDialog query state:", {
+        curriculumId,
+        isLoading,
+        hasData: !!curriculum,
+        error: error?.message,
+      });
+    }
+  }, [open, curriculumId, isLoading, curriculum, error]);
 
   // Update form when curriculum data loads
   useEffect(() => {
     if (curriculum) {
+      console.log("🔍 EditCurriculumDialog received curriculum data:", {
+        id: curriculum.id,
+        name: curriculum.name,
+        target_level: curriculum.target_level,
+        age_group: curriculum.age_group,
+        total_sessions: curriculum.total_sessions,
+        session_duration_hours: curriculum.session_duration_hours,
+        learning_method: curriculum.learning_method,
+        learning_format: curriculum.learning_format,
+        description: curriculum.description,
+        learning_objectives: curriculum.learning_objectives,
+        tags: curriculum.tags,
+      });
+
       form.reset({
         name: curriculum.name,
-        target_level: curriculum.target_level || '',
-        age_group: curriculum.age_group || 'all',
+        target_level: curriculum.target_level || "",
+        age_group: curriculum.age_group || "all",
         total_sessions: curriculum.total_sessions || undefined,
         session_duration_hours: curriculum.session_duration_hours || undefined,
-        learning_method: curriculum.learning_method || '',
-        learning_format: curriculum.learning_format || '',
-        description: curriculum.description || '',
-        learning_objectives: safeParseLearningObjectives(curriculum.learning_objectives),
+        learning_method: curriculum.learning_method || "",
+        learning_format: curriculum.learning_format || "",
+        description: curriculum.description || "",
+        learning_objectives: safeParseLearningObjectives(
+          curriculum.learning_objectives,
+        ),
         tags: safeParseTags(curriculum.tags),
       });
     }
@@ -153,13 +211,15 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
         title: "Thành công",
         description: "Đã cập nhật khung chương trình thành công",
       });
-      queryClient.invalidateQueries({ queryKey: ['curricula'] });
+      queryClient.invalidateQueries({ queryKey: ["curricula"] });
       onOpenChange(false);
     },
     onError: (error: any) => {
       toast({
         title: "Lỗi cập nhật khung chương trình",
-        description: error.response?.data?.error?.message || "Có lỗi xảy ra khi cập nhật khung chương trình",
+        description:
+          error.response?.data?.error?.message ||
+          "Có lỗi xảy ra khi cập nhật khung chương trình",
         variant: "destructive",
       });
     },
@@ -167,9 +227,18 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
 
   const onSubmit = (data: EditFormData) => {
     if (!curriculumId) return;
+    const id = parseInt(curriculumId);
+    if (isNaN(id)) {
+      toast({
+        title: "Lỗi",
+        description: "ID khung chương trình không hợp lệ",
+        variant: "destructive",
+      });
+      return;
+    }
     updateMutation.mutate({
-      id: parseInt(curriculumId),
-      data
+      id,
+      data,
     });
   };
 
@@ -181,7 +250,8 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
         <DialogHeader>
           <DialogTitle>Chỉnh Sửa Khung Chương Trình</DialogTitle>
           <DialogDescription>
-            Cập nhật thông tin khung chương trình. Chỉ có thể chỉnh sửa một số trường khi chương trình chưa được xuất bản.
+            Cập nhật thông tin khung chương trình. Chỉ có thể chỉnh sửa một số
+            trường khi chương trình chưa được xuất bản.
           </DialogDescription>
         </DialogHeader>
 
@@ -228,7 +298,10 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Nhóm tuổi</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Chọn nhóm tuổi" />
@@ -260,7 +333,7 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                           type="number"
                           placeholder="30"
                           {...field}
-                          value={field.value || ''}
+                          value={field.value || ""}
                           onChange={field.onChange}
                         />
                       </FormControl>
@@ -281,7 +354,7 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                           step="0.5"
                           placeholder="2.0"
                           {...field}
-                          value={field.value || ''}
+                          value={field.value || ""}
                           onChange={field.onChange}
                         />
                       </FormControl>
@@ -299,7 +372,10 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                     <FormItem>
                       <FormLabel>Cách thức học</FormLabel>
                       <FormControl>
-                        <Input placeholder="Tự học với hướng dẫn, Hướng dẫn theo nhóm..." {...field} />
+                        <Input
+                          placeholder="Tự học với hướng dẫn, Hướng dẫn theo nhóm..."
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -312,7 +388,10 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Hình thức học</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Chọn hình thức học" />
@@ -352,7 +431,9 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
               <div className="space-y-4 border-t pt-4">
                 <div className="flex items-center gap-2 pb-2">
                   <Target className="h-4 w-4" />
-                  <span className="font-medium">Mục tiêu học tập và Hạng mục</span>
+                  <span className="font-medium">
+                    Mục tiêu học tập và Hạng mục
+                  </span>
                 </div>
 
                 {/* Mục tiêu học tập */}
@@ -365,7 +446,10 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                       <div className="space-y-2">
                         {/* Display existing objectives */}
                         {field.value?.map((objective, index) => (
-                          <div key={index} className="flex items-center gap-2 p-2 bg-slate-50 rounded-md">
+                          <div
+                            key={index}
+                            className="flex items-center gap-2 p-2 bg-slate-50 rounded-md"
+                          >
                             <span className="flex-1 text-sm">{objective}</span>
                             <Button
                               type="button"
@@ -387,12 +471,15 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                           <Input
                             placeholder="Nhập mục tiêu học tập..."
                             onKeyDown={(e) => {
-                              if (e.key === 'Enter') {
+                              if (e.key === "Enter") {
                                 e.preventDefault();
                                 const input = e.target as HTMLInputElement;
                                 if (input.value.trim()) {
-                                  field.onChange([...(field.value || []), input.value.trim()]);
-                                  input.value = '';
+                                  field.onChange([
+                                    ...(field.value || []),
+                                    input.value.trim(),
+                                  ]);
+                                  input.value = "";
                                 }
                               }
                             }}
@@ -403,10 +490,15 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                             variant="outline"
                             onClick={() => {
                               const currentObjectives = field.value || [];
-                              const input = document.querySelector('input[placeholder="Nhập mục tiêu học tập..."]') as HTMLInputElement;
+                              const input = document.querySelector(
+                                'input[placeholder="Nhập mục tiêu học tập..."]',
+                              ) as HTMLInputElement;
                               if (input && input.value.trim()) {
-                                field.onChange([...currentObjectives, input.value.trim()]);
-                                input.value = '';
+                                field.onChange([
+                                  ...currentObjectives,
+                                  input.value.trim(),
+                                ]);
+                                input.value = "";
                               }
                             }}
                           >
@@ -430,7 +522,10 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                         {/* Display existing tags */}
                         <div className="flex flex-wrap gap-2">
                           {field.value?.map((tag, index) => (
-                            <span key={index} className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-md">
+                            <span
+                              key={index}
+                              className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-md"
+                            >
                               {tag}
                               <button
                                 type="button"
@@ -452,14 +547,19 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                           <Input
                             placeholder="Nhập hạng mục..."
                             onKeyDown={(e) => {
-                              if (e.key === 'Enter') {
+                              if (e.key === "Enter") {
                                 e.preventDefault();
                                 const input = e.target as HTMLInputElement;
                                 if (input.value.trim()) {
                                   const currentTags = field.value || [];
-                                  if (!currentTags.includes(input.value.trim())) {
-                                    field.onChange([...currentTags, input.value.trim()]);
-                                    input.value = '';
+                                  if (
+                                    !currentTags.includes(input.value.trim())
+                                  ) {
+                                    field.onChange([
+                                      ...currentTags,
+                                      input.value.trim(),
+                                    ]);
+                                    input.value = "";
                                   }
                                 }
                               }
@@ -471,11 +571,16 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                             variant="outline"
                             onClick={() => {
                               const currentTags = field.value || [];
-                              const input = document.querySelector('input[placeholder="Nhập hạng mục..."]') as HTMLInputElement;
+                              const input = document.querySelector(
+                                'input[placeholder="Nhập hạng mục..."]',
+                              ) as HTMLInputElement;
                               if (input && input.value.trim()) {
                                 if (!currentTags.includes(input.value.trim())) {
-                                  field.onChange([...currentTags, input.value.trim()]);
-                                  input.value = '';
+                                  field.onChange([
+                                    ...currentTags,
+                                    input.value.trim(),
+                                  ]);
+                                  input.value = "";
                                 }
                               }
                             }}
@@ -494,8 +599,10 @@ export const EditCurriculumDialog: React.FC<EditCurriculumDialogProps> = ({
                 <div className="bg-muted p-3 rounded-md">
                   <div className="text-sm text-muted-foreground">
                     <strong>Mã KCT:</strong> {curriculum.code} <br />
-                    <strong>Ngôn ngữ:</strong> {getLanguageDisplay(curriculum.language)} <br />
-                    <strong>Trạng thái:</strong> {getStatusDisplay(curriculum.status)}
+                    <strong>Ngôn ngữ:</strong>{" "}
+                    {getLanguageDisplay(curriculum.language)} <br />
+                    <strong>Trạng thái:</strong>{" "}
+                    {getStatusDisplay(curriculum.status)}
                   </div>
                 </div>
               )}
